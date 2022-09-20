@@ -23,6 +23,7 @@ $colors: (
 @function getColor($color) {
   @return map-get($colors, $color);
 }
+//color: getColor('font-clr2');
 
 $dist16: 16px;
 $dist19: 19px;
