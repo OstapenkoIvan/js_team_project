@@ -1,1 +1,32 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif; // default FF
+}
+
+section {
+  min-width: 320px; //lowest width for mobile
+}

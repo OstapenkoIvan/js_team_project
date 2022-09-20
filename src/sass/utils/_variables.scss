@@ -1,0 +1,42 @@
+$colors: (
+  'font-clr1': #dc56c5,
+  'font-clr2': #ffffff,
+  'font-clr3': #0e0e0e,
+  //
+  'bg-clr1': rgba(255, 255, 255, 0.2),
+  // input fields
+  'bg-clr2':
+    linear-gradient(
+      136.07deg,
+      rgba(196, 196, 196, 0.03) 10.75%,
+      rgba(196, 196, 196, 0) 92.33%
+    ),
+  // logo bg
+  'bg-clr3': rgba(147, 147, 147, 1),
+  //input icons
+  'bg-clr4': rgba(220, 86, 197, 0.3),
+  //outliners
+  'bg-clr5': rgba(76, 0, 254, 1),
+  //Modal main
+);
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+}
+
+$dist16: 16px;
+$dist19: 19px;
+$dist20: 20px;
+$dist21: 21px;
+$dist24: 24px;
+$dist30: 30px;
+$dist32: 32px;
+$dist34: 34px;
+$dist40: 40px;
+$dist42: 42px;
+$dist43: 43px;
+$dist50: 50px;
+$dist52: 52px;
+$dist56: 56px;
+$dist59: 59px;
+$dist60: 60px;

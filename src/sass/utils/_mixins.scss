@@ -1,0 +1,147 @@
+//to center element
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//to add fonts
+@mixin font-size(
+  $font-size,
+  $font-weight: normal,
+  $line-height: initial,
+  $letter-spacing: initial
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+//for pretitle
+@mixin pre-title {
+  color: getColor('font-clr1');
+  text-transform: uppercase;
+  @media screen and (min-width: 1200) {
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: 0.04em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    font-size: 26px;
+    line-height: 30px;
+  }
+  @media screen and (max-width: 765px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+//for title
+@mixin title {
+  color: getColor('font-clr1');
+  text-transform: uppercase;
+  @media screen and (min-width: 1200) {
+    font-size: 58px;
+    line-height: calc(66 / 58);
+    letter-spacing: 0.06em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    font-size: 48px;
+    line-height: calc(55 / 48);
+  }
+  @media screen and (max-width: 765px) {
+    font-size: 34px;
+    line-height: calc(39 / 34);
+  }
+}
+
+// @mixin button-white($side-padding) {
+//   display: flex;
+//   align-items: baseline;
+//   padding: 11px $side-padding;
+//   width: fit-content;
+
+//   font-family: $font-sec;
+//   font-size: 16px;
+//   line-height: 21px;
+//   font-weight: 700;
+
+//   border: none;
+//   background-color: white;
+//   color: getColor('main-clr');
+
+//   border-radius: 20px;
+//   text-align: center;
+
+//   cursor: pointer;
+//   transition: all 250ms linear;
+
+//   &:hover,
+//   &:focus {
+//     color: white;
+//     background-color: getColor('main-clr');
+//   }
+// }
+
+// @mixin button-blue($side-padding) {
+//   display: flex;
+//   align-items: baseline;
+//   padding: 11px $side-padding;
+//   width: fit-content;
+
+//   font-family: $font-sec;
+//   font-size: 16px;
+//   line-height: 21px;
+//   font-weight: 700;
+
+//   background-color: getColor('main-clr');
+//   color: white;
+
+//   border: none;
+//   border-radius: 20px;
+//   text-align: center;
+
+//   cursor: pointer;
+//   transition: all 250ms linear;
+
+//   &:hover,
+//   &:focus {
+//     color: getColor('main-clr');
+//     background-color: white;
+//   }
+// }
+
+@mixin phone {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin toDesktop {
+  @media screen and (max-width: 1199px) {
+    @content;
+  }
+}
+
+//for 2x images
+@mixin bg-adapt {
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    @content;
+  }
+}
