@@ -105,7 +105,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
     font-size: 16px;
     line-height: 1.25;
 
@@ -126,6 +125,7 @@
         border: 1px solid getColor('font-clr1');
     }
 }
+
 
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -171,6 +171,7 @@
 }
 
 .header-form__select-icon {
+
     position: absolute;
     top: 50%;
     right: 32px;
@@ -213,7 +214,6 @@
     .page-title {
         max-width: 400px;
         margin-bottom: 40px;
-    }     
 
     .header-form {
         flex-direction: row;
