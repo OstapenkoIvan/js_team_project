@@ -5,7 +5,7 @@
 }
 
 @mixin tablet {
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  @media screen and (min-width: 768px) {
     @content;
   }
 }
@@ -72,24 +72,24 @@
 @mixin title {
   color: getColor('font-clr1');
   text-transform: uppercase;
+  font-weight: 900;
   @include desktop {
-    font-size: 58px;
-    line-height: calc(66 / 58);
-    letter-spacing: 0.06em;
+    font-size: 50px;
+    line-height: calc(61 / 50);
   }
   @include tablet {
-    font-size: 48px;
-    line-height: calc(55 / 48);
+    font-size: 30px;
+    line-height: calc(37 / 30);
   }
   @include phone {
-    font-size: 34px;
-    line-height: calc(39 / 34);
+    font-size: 18px;
+    line-height: calc(22 / 18);
   }
 }
 
 //for 2x images
-@mixin bg-adapt {
-  @media (min-device-pixel-ratio: 2),
+@mixin bg-adapt-2x {
+  @media screen and (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -151,4 +151,13 @@
   //     background-color: white;
   //   }
   // }
+}
+
+@mixin bg-adapt-3x {
+  @media screen and (min-device-pixel-ratio: 3),
+    (-webkit-min-device-pixel-ratio: 3),
+    (min-resolution: 288dpi),
+    (min-resolution: 3dppx) {
+      @content;
+    }
 }
