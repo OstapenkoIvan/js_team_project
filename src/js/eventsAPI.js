@@ -8,10 +8,10 @@ class EventsAPI {
 
   #page;
 
-  constructor({ code }) {
-    this.coutryCode = code;
-    this.perPage = 20;
+  constructor() {
+    this.perPage = 16;
     this.#page = 0;
+    this.dataArr = [];
   }
 
   set page(num) {
@@ -23,7 +23,7 @@ class EventsAPI {
   }
 
   async fetchEvents({ countryCode = null, keyword = null, id = '' }) {
-    const { perPage, page } = this;
+    const { perPage, page, dataArr } = this;
     const { URL, KEY } = EventsAPI.DATA;
     try {
       const response = await axios.get(`events${id}.json`, {
@@ -40,6 +40,8 @@ class EventsAPI {
       const data = (await response.data._embedded.events)
         ? response.data._embedded.events
         : response.data;
+      // const saveData = await data => (dataArr = data);
+      // await console.log(this.dataArr);
       return data;
     } catch (error) {
       if (error.response) {
