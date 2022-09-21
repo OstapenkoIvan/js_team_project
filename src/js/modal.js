@@ -5,58 +5,74 @@ import EventsAPI from './eventsAPI';
 //* екземпляр класу
 const allEvents = new EventsAPI();
 
-getEventByIdForModal();
-async function getEventByIdForModal() {
-  let event = await allEvents.getEventById('vvG18Z96SmndKH');
-
-  console.log(event);
-  let { id, name, info, classifications, priceRanges } = event;
-
-  let [priceRanges1 , priceRanges2 = {min: 'NoTickets', max:'---', currency:'---'}] = priceRanges;
-console.log(priceRanges1);
-let priceRangesVIP = {};
-if (priceRanges2) {
-
-  console.log(priceRanges2);
-    console.log('=============');
-  }
-
-  eventObj = {
-    id: id,
-    name: name,
-    description: info,
-    contry: '',
-    date: '',
-    time: '',
-    priceStandart: {
-      min: event.priceRanges[0].min,
-      max: event.priceRanges[0].max,
-      currency: event.priceRanges[0].currency,
-    },
-    priceVIP: {
-      min: priceRangesVIP.min,
-      max: priceRangesVIP.max,
-      currency: priceRangesVIP.currency,
-    },
-
-    genreName: classifications[0].genre.name,
-  };
-  createModalContent(eventObj);
-  console.log(eventObj);
-}
-
 const modalRefs = {
   backdropEl: document.querySelector('.js-backdrop'),
   closeModalEl: document.querySelector('.js-close-modal'),
   modalContentEl: document.querySelector('.js-modal-content'),
+  itemList: document.querySelector('.gallery__list'),
+  bodyEl: document.body,
 };
-let { backdropEl, closeModalEl, modalContentEl } = modalRefs;
+let { backdropEl, closeModalEl, modalContentEl, itemList, bodyEl } = modalRefs;
 
-// console.log(modalRefs);
+console.log(modalRefs);
+
+itemList.addEventListener('click', event => {
+  event.preventDefault();
+  let { target } = event;
+  if (target.dataset.action !== 'openModal') {
+    return;
+  }
+
+  getEventByIdForModal(target.dataset.id);
+
+});
+
+// getEventByIdForModal();
+async function getEventByIdForModal() {
+  // let event = await allEvents.getEventById('vvG18Z96SmndKH');
+  // if (id !== undefined) {
+  //   // let event = await allEvents.getEventById(`${id}`);
+  //   return
+  // }
+
+  console.log(event);
+  let { id, name, images, info, classifications, priceRanges, dates } = event;
+  let [priceRanges1, priceRanges2 = {}] = priceRanges;
+
+
+  eventObj = {
+    id: id,
+    name: name,
+    imageLogo: images[0].url,
+    image: images[7].url,
+    description: info,
+    contry: '',
+    city: '',
+    date: dates.start.localDate,
+    time: dates.start.localTime,
+    timeZone: dates.timezone,
+    genre: classifications[0].genre.name,
+    priceStandart: {
+      min: priceRanges1.min,
+      max: priceRanges1.max,
+      currency: priceRanges1.currency,
+    },
+    priceVIP: {
+      min: priceRanges2.min,
+      max: priceRanges2.max,
+      currency: priceRanges2.currency,
+    },
+  };
+
+  console.log(eventObj);
+  createModalContent(eventObj);
+}
 
 // toOpenModal()
 function toOpenModal() {
   backdropEl.classList.toggle('is-hidden');
+  bodyEl.classList.toggle('--notScrolled');
+
   toCloseModal();
 }
 function toCloseModal() {
@@ -79,6 +95,7 @@ function toCloseModal() {
   function closeModal() {
     backdropEl.classList.add('is-hidden');
     modalContentEl.innerHTML = '';
+    bodyEl.classList.toggle('--notScrolled');
     backdropEl.removeEventListener('click', closeModalByClick);
     window.removeEventListener('keydown', closeModalByEsc);
   }

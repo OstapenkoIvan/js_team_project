@@ -1,11 +1,11 @@
 <div class='modal-top'>
   <div class='modal-logo-box'>
-    <img class='modal-logo-img' src='{{logoImg}}' alt='logo' />
+    <img class='modal-logo-img' src='{{eventObj.imageLogo}}' alt='logo' />
   </div>
 </div>
 <div class='modal-main'>
   <div class='modal-side-left'>
-    <img class='modal-img' src='{{mainImg}}' alt='{{author}}' />
+    <img class='modal-img' src='{{eventObj.image}}' alt='{{eventObj.name}}' />
   </div>
   <div class='modal-side-right'>
     <div class='section --info'>
@@ -16,28 +16,30 @@
     </div>
     <div class='section --info'>
       <span class='title'>When</span>
-      <span class='text'>
-        <span class='event --date'>{{date}}</span>
-        <span class='event --time'>
-          {{time}}
-          <span class='event --country'>({{city}}/{{country}})</span>
-        </span>
+      <span class='event --date'>{{eventObj.date}}</span>
+      <span class='event --time'>
+        {{eventObj.time}}
+        <span
+          class='event --timeZone'
+        >({{eventObj.timeZone}})</span>
       </span>
+
     </div>
     <div class='section --info'>
       <span class='title'>Where</span>
-      <span class='event --region'>{{city}}, {{country}}</span>
-      <span class='event --location'>{{location}}</span>
+      <span class='event --region'>{{eventObj.city}},
+        {{eventObj.country}}</span>
+      <span class='event --location'>{{eventObj.location}}</span>
     </div>
     <div class='section --info'>
       <span class='title'>Who</span>
-      <span class='event --author'>{{author}}</span>
+      <span class='event --author'>{{eventObj.name}}</span>
     </div>
     <div class='section --toBuy'>
       <span class='title'>Prices</span>
       <div class='zone-toBuy'>
         <span class='event --price --standart'>
-          <svg class='btn-icon' width="29" height="19">
+          <svg class='btn-icon' width='29' height='19'>
             <use href='{{sprite}}#icon-ticket'></use>
           </svg>
           Standart
@@ -48,7 +50,7 @@
           BUY TICKETS
         </button>
         <span class='event --price --vip'>
-          <svg class='btn-icon' width="29" height="19">
+          <svg class='btn-icon' width='29' height='19'>
             <use href='{{sprite}}#icon-ticket'></use>
           </svg>
           VIP
@@ -63,7 +65,7 @@
   </div>
 </div>
 <div class='modal-bottom'>
-  <button class='button --moreInfoBtn' type='button'>
+  <button class='button --moreInfoBtn' type='button' data-key-word='{{genre}}'>
     MORE FROM THIS AUTHOR
   </button>
 </div>
