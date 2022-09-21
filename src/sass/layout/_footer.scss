@@ -1,0 +1,29 @@
+.footer__text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(20 / 16);
+  text-align: center;
+  color: #939393;
+  margin-bottom: 40px;
+  &--red {
+    color: #ff0000;
+  }
+
+  .footer__btn {
+    color: #939393;
+    text-decoration: none;
+  }
+  .footer__btn:hover,
+  .footer__btn:focus {
+    color: #ff6b08;
+    transform: scale(1.1);
+  }
+
+  @include phone {
+    @include font-size(14px, 700, calc(18 / 14));
+    margin-bottom: 25px;
+    max-width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
