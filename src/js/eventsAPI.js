@@ -1,25 +1,5 @@
 import axios from 'axios';
 
-const KEY = 'c8d7rEVcp3PFJdChpDvpL2XvzRixmmGJ';
-const URL = 'https://app.ticketmaster.com/discovery/v2/';
-const coutryCode = {
-  poland: 'PL',
-  usa: 'US',
-  netherlands: 'NL',
-  spain: 'ES',
-  belgium: 'BE',
-  italy: 'IT',
-  austria: 'AT',
-  canada: 'CA',
-  denmark: 'DK',
-  belgium: 'BE',
-};
-
-/**
- * 1. Event search - https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=c8d7rEVcp3PFJdChpDvpL2XvzRixmmGJ&countryCode=DK
- * 2. Event details - https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?apikey=c8d7rEVcp3PFJdChpDvpL2XvzRixmmGJ
- */
-
 class EventsAPI {
   static DATA = {
     KEY: 'c8d7rEVcp3PFJdChpDvpL2XvzRixmmGJ',
@@ -42,11 +22,12 @@ class EventsAPI {
     return this.#page;
   }
 
-  async fetchEvents({ countryCode = '', keyword = '', id = '' }) {
+  async fetchEvents({ countryCode = null, keyword = null, id = '' }) {
     const { perPage, page } = this;
     const { URL, KEY } = EventsAPI.DATA;
     try {
-      const response = await axios.get(`${URL}events${id}.json`, {
+      const response = await axios.get(`events${id}.json`, {
+        baseURL: URL,
         params: {
           apikey: KEY,
           size: perPage,
@@ -54,11 +35,24 @@ class EventsAPI {
           countryCode,
           keyword,
         },
+        headers: { 'Content-Type': 'application/json' },
       });
-      const data = await response.data._embedded.events;
+      const data = (await response.data._embedded.events)
+        ? response.data._embedded.events
+        : response.data;
       return data;
     } catch (error) {
-      console.error(error.message);
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+          console.log(error.config);
+        }
     }
   }
 
