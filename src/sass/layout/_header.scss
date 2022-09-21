@@ -1,0 +1,198 @@
+.page-header {
+    padding-bottom: 112px;
+    background-color: rgba(11, 11, 11, 0.5);
+    background-image: url("/src/images/tablet/header-bg-tablet(1x).png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+
+    @include bg-adapt-2x {
+        background-image: url("/src/images/tablet/header-bg-tablet(2x).png");
+    }
+
+    @include bg-adapt-3x {
+        background-image: url("/src/images/tablet/header-bg-tablet(3x).png");
+    }
+
+    @include desktop {
+        background-image: url("/src/images/desktop/header-bg-desktop(1x).png");
+    }
+
+    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
+        (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
+        (min-width: 1280px) and (min-resolution: 192dpi),
+        (min-width: 1280px) and (min-resolution: 2dppx) {
+        background-image:
+                url("/src/images//desktop/header-bg-desktop(2x).png");
+    }
+
+    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 3),
+        (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 3),
+        (min-width: 1280px) and (min-resolution: 288dpi),
+        (min-width: 1280px) and (min-resolution: 3dppx) {
+        background-image:
+                url("/src/images/desktop/header-bg-desktop(3x).png");
+    }
+};
+
+.background-image__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 107px;
+    height: 89px;
+
+    background: linear-gradient(136.07deg, rgba(196, 196, 196, 0.03) 10.75%,
+         rgba(196, 196, 196, 0) 92.33%);
+    backdrop-filter: blur(15px);
+    border-radius: 0 0 100px 0;
+}
+
+.page-header__wrapper{
+    margin-bottom: 24px;
+}
+
+.logo {
+    position: relative;
+    z-index: 1;
+
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+
+    margin-top: 19px;
+    margin-bottom: 36px;
+}
+
+.page-title {
+    @include title;
+    max-width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.header-form {
+    @include flex-center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header-form__thumb {
+    position: relative;
+}
+
+.header-form__input {
+    width: 100%;
+    height: 40px;
+
+    font-size: 16px;
+    line-height: 1.25;
+
+    padding: 10px 64px 10px 32px;
+    color: getColor('font-clr2');
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 0;
+    outline: none;
+
+    transition-property: border;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus {
+        border: 1px solid getColor('font-clr1');
+    }
+}
+
+.header-form__icon {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    transform: translateY(-50%);
+
+    fill: #939393;
+
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    .header-form__input:focus+& {
+        fill: getColor('font-clr1');
+    }
+}
+
+@include tablet {
+    .page-header {
+        padding-bottom: 170px;
+    }
+
+    .background-image__top {
+        width: 179px;
+        height: 151px;
+        border-radius: 0 0 100% 0;
+    }
+
+    .page-header__wrapper {
+        display: flex;
+        margin-bottom: 40px;
+    }
+
+    .logo {
+        margin-top: 23px;
+        margin-bottom: 0;
+        width: 100px;
+        height: 29px;
+    }
+
+    .page-title {
+        max-width: 400px;
+        margin-top: 40px;
+        margin-bottom: 0;
+        margin-left: 52px;
+        margin-right: 0;
+    }     
+
+    .header-form {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .header-form__input {
+        width: 336px;
+    }
+}
+
+@include desktop {
+    .page-header {
+        padding-bottom: 196px;
+    }
+
+    .background-image__top {
+        width: 229px;
+        height: 193px;
+        border-radius: 0 0 100% 0;
+    }
+
+    .logo {
+        margin-top: 40px;
+        width: 136px;
+        height: 70px;
+    }
+
+    .page-title {
+        font-size: 50px;
+        line-height: 1.22;
+
+        max-width: 608px;
+
+        margin-left: 184px;
+    }
+
+    .header-form__input {
+        width: 288px;
+    }
+}
