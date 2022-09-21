@@ -127,6 +127,7 @@
     }
 }
 
+
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #939393;
@@ -171,6 +172,7 @@
 }
 
 .header-form__select-icon {
+
     position: absolute;
     top: 50%;
     right: 32px;
@@ -213,7 +215,9 @@
     .page-title {
         max-width: 400px;
         margin-bottom: 40px;
+
     }     
+
 
     .header-form {
         flex-direction: row;
