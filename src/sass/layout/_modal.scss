@@ -1,0 +1,302 @@
+/* --------------------------- МОДАЛЬНЕ ВІКНО */
+.modal {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0) scale(1);
+  // transform: scale(1);
+
+  height: fit-content;
+  // max-height: 98%;
+
+  min-width: 280px;
+  width: 90%;
+  max-width: 440px;
+
+  padding: 80px 15px 100px;
+
+  background-color: #fff2fd;
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  border-top-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+
+  transition: transform var(--timing-function__main),
+    visibility var(--timing-function__main);
+
+  @media screen and (min-width: 768px) {
+    height: fit-content;
+
+    max-width: 704px;
+    min-width: 704px;
+
+    padding-left: 90px;
+    padding-right: 50px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: fit-content;
+    // max-height: 98%;
+
+    max-width: 1035px;
+    min-width: 1035px;
+
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &-top {
+    display: flex;
+    justify-content: center;
+  }
+  &-logo {
+    &-box {
+      overflow: hidden;
+      
+      width: 102px;
+      height: 102px;
+      
+      object-fit: contain;
+      object-position: center;
+      
+      background-color: rgba(219, 219, 219, 0.121);
+      
+      border-radius: 50%;
+      @media screen and (min-width: 768px) {
+        width: 70px;
+        height: 70px;
+      }
+      @media screen and (min-width: 1280px) {
+        width: 132px;
+        height: 132px;
+      }
+    }
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 32px;
+  }
+  &-img {
+    width: 100%;
+    height: 100%;
+  }
+  &-side {
+    &-left {
+      display: none;
+      @media screen and (min-width: 768px) {
+        display: block;
+        max-height: 450px;
+        width: 250px;
+        min-width: 250px;
+        max-width: 250px;
+      }
+      @media screen and (min-width: 1280px) {
+        height: 665px;
+        max-height: 665px;
+        width: 430px;
+        min-width: 450px;
+        max-width: 450px;
+      }
+    }
+    &-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+
+      text-align: center;
+      background-color: transparent;
+      @media screen and (min-width: 768px) {
+        text-align: left;
+        align-items: flex-start;
+      }
+      @media screen and (min-width: 1280px) {
+        align-items: flex-start;
+      }
+      & .section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        &.--toBuy {
+          & .zone-toBuy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            @media screen and (min-width: 768px) {
+              align-items: flex-start;
+            }
+          }
+        }
+        @media screen and (min-width: 768px) {
+          align-items: flex-start;
+        }
+      }
+      & .title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.2;
+        color: getColor('font-clr1');
+        text-transform: uppercase;
+
+        margin-bottom: 5px;
+
+        @media screen and (min-width: 768px) {
+          font-size: 24px;
+        }
+      }
+      & .event {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+
+        margin-bottom: 3px;
+        @media screen and (min-width: 768px) {
+          font-size: 18px;
+        }
+        &.--price {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+  }
+  &-bottom {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.button {
+  display: block;
+  border-style: none;
+
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: center;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--timing-function__main);
+  &.--close-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    align-self: flex-start;
+
+    width: 17px;
+    height: 17px;
+
+    background-color: transparent;
+
+    & .btn-icon {
+      pointer-events: none;
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      min-height: 17px;
+    }
+  }
+  &.--toBuyBtn {
+    padding: 10px 20px;
+
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+    border-radius: 5px;
+
+    background-color: #4c00fe;
+    &:hover{
+      background-color: #2E009A;
+    }
+  }
+  &.--moreInfoBtn {
+    padding: 10px 3px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+
+    color: #4c00fe;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+    border-radius: 5px;
+
+    border-color: #4c00fe;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      color: #dc56c5;
+      border-color: #dc56c5;
+    }
+    @media screen and (min-width: 768px) {
+      padding: 10px 15px;
+    }
+  }
+}
+/* --------------------------- BACKDROP BLACK */
+.backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+
+  transition: opacity var(--timing-function__main),
+    visibility var(--timing-function__main);
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    & .modal {
+      transform: translate(-50%,0) scale(0.8);
+    }
+  }
+}

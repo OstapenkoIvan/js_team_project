@@ -74,3 +74,5 @@ class EventsAPI {
 }
 
 export default EventsAPI;
+
+

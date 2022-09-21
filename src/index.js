@@ -27,7 +27,7 @@ console.log(allEvents.getSearchEvents('CA', 'Raptors'));
 
 //Можем ввести ID мероприятия и получить по нему данные
 console.log(allEvents.getEventById('vvG18Z96SmndKH'));
- */
+*/
 
 //============================================================
 
@@ -39,8 +39,11 @@ const refs = {
 refs.bodyEl.addEventListener('load', getEvents(), { once: true });
 
 async function getEvents() {
+  // ! Масив із подіями
   const eventsArr = await allEvents.getAllEvents();
+  //* виведення у консоль масиву із подіями
   await console.log(eventsArr);
+
   const appendMarkup = await listMarkup(eventsArr);
   await refs.listEl.insertAdjacentHTML('beforeend', appendMarkup);
   //   await console.log(appendMarkup);
@@ -57,17 +60,20 @@ async function listMarkup(data) {
           start: { localDate },
         },
         _embedded: { venues },
-      }) => `<li class="gallery__item-card"><a href="#"  data-id="${id}">
-        <img src="${images[7].url}" alt="${name}" class="gallery__img">
-        <h3 class="gallery__card-title">${name}</h3>
-        <p class="gallery__date">${localDate}</p>
-        <p class="gallery__kontsert-location">
-        <svg class="gallery__card-icon" width="6" height="9">
-        <use href="${symbolDefs}#location-desc"></use>
-        </svg>${venues[0].name}
-        </p>
+      }) => `
+      <li class="gallery__item-card">
+        <a href="#"  data-id="${id}">
+          <img src="${images[7].url}" alt="${name}" class="gallery__img">
+          <h3 class="gallery__card-title">${name}</h3>
+          <p class="gallery__date">${localDate}</p>
+          <p class="gallery__kontsert-location">
+            <svg class="gallery__card-icon" width="6" height="9">
+              <use href="${symbolDefs}#location-desc"></use>
+            </svg>${venues[0].name}
+          </p>
         </a>
-        </li>`
+      </li>
+      `
     )
     .join('');
 }
@@ -85,3 +91,4 @@ async function listMarkup(data) {
  */
 
 allEvents.getEventById('vvG18Z96SmndKH');
+
