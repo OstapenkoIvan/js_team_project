@@ -105,6 +105,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+
     font-size: 16px;
     line-height: 1.25;
 
@@ -214,6 +215,9 @@
     .page-title {
         max-width: 400px;
         margin-bottom: 40px;
+
+    }     
+
 
     .header-form {
         flex-direction: row;
