@@ -22,24 +22,25 @@ itemList.addEventListener('click', event => {
   if (target.dataset.action !== 'openModal') {
     return;
   }
-
   getEventByIdForModal(target.dataset.id);
-
 });
 
-// getEventByIdForModal();
-async function getEventByIdForModal() {
-  // let event = await allEvents.getEventById('vvG18Z96SmndKH');
-  // if (id !== undefined) {
-  //   // let event = await allEvents.getEventById(`${id}`);
-  //   return
-  // }
+async function getEventByIdForModal(cardId) {
+  if (cardId === undefined) {
+    return;
+  }
+  let eventObj = await allEvents.getEventById(`${cardId}`);
+  let {
+    id,
+    name,
+    images,
+    info,
+    classifications,
+    priceRanges = [],
+    dates,
+  } = eventObj;
 
-  console.log(event);
-  let { id, name, images, info, classifications, priceRanges, dates } = event;
   let [priceRanges1, priceRanges2 = {}] = priceRanges;
-
-
   eventObj = {
     id: id,
     name: name,
@@ -63,12 +64,9 @@ async function getEventByIdForModal() {
       currency: priceRanges2.currency,
     },
   };
-
-  console.log(eventObj);
   createModalContent(eventObj);
 }
 
-// toOpenModal()
 function toOpenModal() {
   backdropEl.classList.toggle('is-hidden');
   bodyEl.classList.toggle('--notScrolled');
@@ -100,22 +98,6 @@ function toCloseModal() {
     window.removeEventListener('keydown', closeModalByEsc);
   }
 }
-
-function onEventCardClick(evt, arr) {
-  let { target } = evt;
-  let eventCardId = target.dataset.id;
-  let foundedEventCard = {};
-  let transferData = {
-    name: foundedEventCard.name,
-  };
-  if (eventCardId === undefined) {
-    return;
-  }
-
-  foundedEventCard = arr.find(el => el.id === eventCardId);
-  createModalContent(foundedEventCard);
-}
-// createModalContent({});
 function createModalContent(obj) {
   let modalObj = {
     sprite: sprite,
@@ -124,4 +106,13 @@ function createModalContent(obj) {
 
   modalContentEl.innerHTML = modal(modalObj);
   toOpenModal();
+}
+function getMoreInfo() {
+  let moreInfoBtn = document.querySelector('.--moreInfoBtn');
+  moreInfoBtn.addEventListener('click', onGetMoreInfoBtnClick)
+
+}
+
+function onGetMoreInfoBtnClick(){
+  
 }

@@ -46,9 +46,9 @@
           {{eventObj.priceStandart.min}}-{{eventObj.priceStandart.max}}
           {{eventObj.priceStandart.currency}}
         </span>
-        <button class='button --toBuyBtn' type='button'>
+        <a class='button --toBuyBtn' href="#">
           BUY TICKETS
-        </button>
+        </a>
         <span class='event --price --vip'>
           <svg class='btn-icon' width='29' height='19'>
             <use href='{{sprite}}#icon-ticket'></use>
@@ -57,15 +57,15 @@
           {{eventObj.priceVIP.min}}-{{eventObj.priceVIP.max}}
           {{eventObj.priceVIP.currency}}
         </span>
-        <button class='button --toBuyBtn' type='button'>
+        <a class='button --toBuyBtn' href="#">
           BUY TICKETS
-        </button>
+        </a>
       </div>
     </div>
   </div>
 </div>
 <div class='modal-bottom'>
-  <button class='button --moreInfoBtn' type='button' data-key-word='{{genre}}'>
+  <button class='button --moreInfoBtn' type='button' data-key-word='{{eventObj.genre}}'>
     MORE FROM THIS AUTHOR
   </button>
 </div>
