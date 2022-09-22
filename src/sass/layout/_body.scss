@@ -1,45 +1,51 @@
-.gallery{
-    background: #0E0E0E;
-   
-}
 .gallery__list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    color: getColor('font-clr2');
-    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 32px;
+    padding: 10px;
+    margin-bottom: 60px;
+  
 }
 .gallery__item-card{
     position: relative;
     display: block;
-    height: 239px;
-    width: 130px;
+    min-height: 239px;
+    width: 120px;
     text-align: center;
+    padding-bottom: 5px;
+}
+
+.gallery__link:hover .gallery__img-wrapper::before,
+.gallery__link:focus .gallery__img-wrapper::before{
+    border-color: getColor('font-clr1');
+}
+.gallery__img-wrapper{
+    overflow: hidden;
+    width: 100%;
+    height: 154px;
+    border-radius: 50px 0;
+    
+}
+.gallery__img-wrapper::before{
+    content: "";
+        position: absolute;
+        top: -9px;
+        right: -9px;
+        width: 102px;
+        height: 95px;
+        border-radius: 50px 0;
+        border: 1px solid getColor('bg-clr4');
 
 }
-.gallery__item-card:not(:last-child){
-    margin-bottom: $dist32;
-}
-.gallery__item-card::before{
-    content:"";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 102px;
-    height: 95px;
-    border-radius: 50px 0;
-    border: 1px solid getColor('bg-clr4');
-   
-}
 .gallery__img{
+    object-fit: cover;
     display: block;
-    width: 120px;
-    height: 151px;
-    border-radius: 50px 0;
+    object-position: center;
+    width: 100%;
     position: relative;
-    margin-top: 9px;
-   
 }
+
 .gallery__card-title {
     @include font-size(14px, 700, calc(17.07 / 14));
     color: getColor('font-clr1');
@@ -49,6 +55,7 @@
 .gallery__date{
     @include font-size(14px, 400, calc(17.07 / 14));
     margin-top: 8px;
+    color: getColor('font-clr2');
 
 }
 .gallery__kontsert-location{
@@ -57,7 +64,7 @@
     justify-content: center;
     @include font-size(12px, 600, calc(14.63 / 12));
     margin-top: 8px;
-
+    color: getColor('font-clr2');
 
 }
  .gallery__card-icon {
@@ -67,7 +74,7 @@
  }
 @include phone{
     .gallery__list{
-        max-width: 280px;
+        max-width: 300px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -75,24 +82,30 @@
 }
 @include tablet{
     .gallery__list{
-        width: 704px;
-        justify-content: space-between;
+        // max-width: 760px;
+        
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 43px;
+     
     }
     .gallery__item-card{
-        width: 152px;
-        height: 269px;
+        width: 141px;
+        min-height: 269px;
         
     }
-    .gallery__item-card::before {
+    .gallery__img-wrapper::before {
         content: "";
         width: 120px;
         height: 112px;
+        top: -10px;
+        right: -10px;
 
     }
-    .gallery__img {
-        width: 141px;
-        height: 168px;
-        margin-top: 10px;
+    .gallery__img-wrapper{
+        width: 100%;
+        height: 178px;
+       
     }
     .gallery__card-title {
         @include font-size(16px, 700, calc(19.05 / 16));
@@ -101,9 +114,9 @@
         @include font-size(16px, 400, calc(19.05 / 16));
     }
      .gallery__kontsert-location {
-         @include font-size(14px, 600, calc(17.07 / 14));
+        @include font-size(14px, 600, calc(17.07 / 14));
         
-     }
+    }
     .gallery__card-icon{
         width: 8px;
         height: 14px;
@@ -112,26 +125,30 @@
 
 @include desktop{
     .gallery__list {
-        width: 1248px;
-        justify-content: space-between;
+        // max-width: 1248px;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 53px;
+        row-gap: 59px;
+       
     }
     .gallery__item-card {
-        width: 288px;
-        height: 437px;
+        width: 267px;
+        min-height: 437px;
+       
     }
-    .gallery__item-card::before {
+    .gallery__img-wrapper::before {
         content: "";
         width: 227px;
         height: 212px;
+        top: -19px;
+        right: -19px;
+
     }
-   .gallery__img {
-      width: 267px;
-      height: 337px;
-      margin-top: 19px;
+   .gallery__img-wrapper{
+      width: 100%;
+      min-height: 337px;
+
    }
-    .gallery__item-card:not(:last-child) {
-        margin-bottom: $dist40;
-    }
     .gallery__card-title {
         @include font-size(16px, 700, calc(19.05 / 16));
     }
