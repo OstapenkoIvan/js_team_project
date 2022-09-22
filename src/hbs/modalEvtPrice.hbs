@@ -1,0 +1,25 @@
+<span
+  class='event --price --standart'
+  data-price-min='{{priceStandart.min}}'
+  data-price-max='{{priceStandart.min}}'
+>
+  <svg class='btn-icon' width='29' height='19'>
+    <use href='{{sprite}}#icon-ticket'></use>
+  </svg>
+  Standart
+  <span class='js-price'><span class='js-price'>
+      <span class='js-price-min'>{{priceStandart.min}}</span>
+      -
+      <span class='js-price-max'>{{priceStandart.max}}</span>
+      <span>{{priceStandart.currency}}</span>
+    </span>
+  </span>
+</span>
+<a
+  class='linkBtn --toBuyTicketLink {{linkStatusClass}}'
+  href='{{toBuyUrl}}'
+  target='_blank'
+  rel='noopener noreferrer'
+>
+  BUY TICKETS
+</a>

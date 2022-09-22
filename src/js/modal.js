@@ -10,9 +10,17 @@ const modalRefs = {
   closeModalEl: document.querySelector('.js-close-modal'),
   modalContentEl: document.querySelector('.js-modal-content'),
   itemList: document.querySelector('.gallery__list'),
+  moreInfoBtn: document.querySelector('.--moreInfoBtn'),
   bodyEl: document.body,
 };
-let { backdropEl, closeModalEl, modalContentEl, itemList, bodyEl } = modalRefs;
+let {
+  backdropEl,
+  closeModalEl,
+  modalContentEl,
+  itemList,
+  bodyEl,
+  moreInfoBtn,
+} = modalRefs;
 
 console.log(modalRefs);
 
@@ -29,30 +37,35 @@ async function getEventByIdForModal(cardId) {
   if (cardId === undefined) {
     return;
   }
-  let eventObj = await allEvents.getEventById(`${cardId}`);
+  let eventObj = await allEvents.getEventById(cardId);
   let {
     id,
     name,
     images,
-    info,
+    info = 'Not available info yet.',
     classifications,
     priceRanges = [],
     dates,
+    url,
+    _embedded: { venues },
   } = eventObj;
 
-  let [priceRanges1, priceRanges2 = {}] = priceRanges;
-  eventObj = {
+  let [priceRanges1 = {}, priceRanges2 = {}] = priceRanges;
+
+  let forModalObj = {
     id: id,
     name: name,
     imageLogo: images[0].url,
     image: images[7].url,
     description: info,
-    contry: '',
-    city: '',
+    country: venues[0].country.name,
+    city: venues[0].city.name,
+    location: venues[0].name,
     date: dates.start.localDate,
     time: dates.start.localTime,
     timeZone: dates.timezone,
     genre: classifications[0].genre.name,
+    toBuyUrl: url,
     priceStandart: {
       min: priceRanges1.min,
       max: priceRanges1.max,
@@ -63,8 +76,10 @@ async function getEventByIdForModal(cardId) {
       max: priceRanges2.max,
       currency: priceRanges2.currency,
     },
+    sprite,
   };
-  createModalContent(eventObj);
+  console.log(forModalObj);
+  createModalContent(forModalObj);
 }
 
 function toOpenModal() {
@@ -76,6 +91,15 @@ function toOpenModal() {
 function toCloseModal() {
   backdropEl.addEventListener('click', closeModalByClick);
   window.addEventListener('keydown', closeModalByEsc);
+  moreInfoBtn.addEventListener('click', onGetMoreInfoBtnClick);
+  function closeModal() {
+    backdropEl.classList.add('is-hidden');
+    modalContentEl.innerHTML = '';
+    bodyEl.classList.toggle('--notScrolled');
+    backdropEl.removeEventListener('click', closeModalByClick);
+    window.removeEventListener('keydown', closeModalByEsc);
+    moreInfoBtn.removeEventListener('click', onGetMoreInfoBtnClick);
+  }
   function closeModalByEsc(evt) {
     let { key } = evt;
     if (key === 'Escape') {
@@ -90,29 +114,96 @@ function toCloseModal() {
     }
     closeModal();
   }
-  function closeModal() {
-    backdropEl.classList.add('is-hidden');
-    modalContentEl.innerHTML = '';
-    bodyEl.classList.toggle('--notScrolled');
-    backdropEl.removeEventListener('click', closeModalByClick);
-    window.removeEventListener('keydown', closeModalByEsc);
+  function onGetMoreInfoBtnClick(evt) {
+    let { target } = evt;
+    let keyWord = target.dataset.keyWord;
+    console.log(keyWord);
+    closeModal();
   }
 }
+
 function createModalContent(obj) {
-  let modalObj = {
-    sprite: sprite,
-    eventObj: obj,
-  };
 
-  modalContentEl.innerHTML = modal(modalObj);
+
+  modalContentEl.innerHTML = modal(obj);
+  moreInfoBtn.dataset.keyWord = obj.genre;
   toOpenModal();
+
+  toNotActiveLink(obj);
 }
-function getMoreInfo() {
-  let moreInfoBtn = document.querySelector('.--moreInfoBtn');
-  moreInfoBtn.addEventListener('click', onGetMoreInfoBtnClick)
+function toNotActiveLink(obj) {
+  let tuBuyLinksInfo = modalContentEl.querySelectorAll('.event.--price');
+  tuBuyLinksInfo.forEach(el => {
+    let elPriceList = el.querySelector('.js-price');
+    let elPriceMIN = elPriceList.querySelector('.js-price-min');
+
+    let elPriceMAX = elPriceList.querySelector('.js-price-max');
+
+    // console.log(elPriceMIN.textContent, elPriceMAX.textContent);
+  });
+
+  console.log(obj.priceStandart.min, obj.priceStandart.max); 
+  console.log(obj.priceVIP.min, obj.priceVIP.max);
 
 }
 
-function onGetMoreInfoBtnClick(){
-  
+function createToBuyZoneComp(obj) {
+  let {} = obj
+
+
+
+  return `
+  <div class='zone-toBuy'>
+      <span
+        class='event --price --standart'
+        data-price-min=''
+        data-price-max=''
+      >
+        <svg class='btn-icon' width='29' height='19'>
+          <use href='#icon-ticket'></use>
+        </svg>
+        Standart
+        <span class='js-price'><span class='js-price'>
+          <span class="js-price-min"></span>
+           -
+          <span class="js-price-max"></span>
+          <span></span>
+        </span>
+        </span>
+      </span>
+      <a
+        class='linkBtn --toBuyTicketLink'
+        href=''
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        BUY TICKETS
+      </a>
+      <span
+        class='event --price --vip'
+        data-price-min=''
+        data-price-max=''
+      >
+        <svg class='btn-icon' width='29' height='19'>
+          <use href='#icon-ticket'></use>
+        </svg>
+        VIP
+        <span class='js-price'>
+          <span class="js-price-min"></span>
+           -
+          <span class="js-price-max"></span>
+          <span></span>
+        </span>
+
+      </span>
+      <a
+        class='linkBtn --toBuyTicketLink'
+        href=''
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        BUY TICKETS
+      </a>
+    </div>
+    `;
 }
