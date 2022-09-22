@@ -63,17 +63,31 @@ async function listMarkup(data) {
           start: { localDate },
         },
         _embedded: { venues },
-      }) => `<li class="gallery__item-card"><a href="#"  data-id="${id}">
-        <img src="${images[7].url}" alt="${name}" class="gallery__img">
-        <h3 class="gallery__card-title">${name}</h3>
-        <p class="gallery__date">${localDate}</p>
-        <p class="gallery__kontsert-location">
-        <svg class="gallery__card-icon" width="6" height="9">
-        <use href="${symbolDefs}#location-desc"></use>
-        </svg>${venues[0].name}
-        </p>
-        </a>
-        </li>`
+      }) => `<li class="gallery__item-card"><a href="#" data-id="${id}">
+      <div class="gallery__img-wrapper">
+      <picture>
+      <source srcset="
+        ${images.find(img => img.width === 305 && img.ratio === '3_2').url} 1x, 
+        ${
+          images.find(img => img.width === 640 && img.ratio === '3_2').url
+        } 2x, ${
+        images.find(img => img.width === 1024 && img.ratio === '3_2').url
+      } 3x">
+      <img src="${
+        images.find(img => img.width === 305 && img.ratio === '3_2').url
+      }"
+              alt="${name}" loading="lazy" aria-label="${name}" class="gallery__img">
+      </picture>
+      </div>
+          <h3 class="gallery__card-title">${name}</h3>
+          <p class="gallery__date">${localDate}</p>
+          <p class="gallery__kontsert-location">
+          <svg class="gallery__card-icon" width="6" height="9">
+          <use href="${symbolDefs}#location-desc"></use>
+          </svg>${venues[0].name}
+          </p>
+          </a>
+          </li>`
     )
     .join('');
 }
@@ -93,9 +107,12 @@ async function listMarkup(data) {
 allEvents.getEventById('vvG18Z96SmndKH');
 
 ////////////////////////////////////////////////////////////////////////////////////////tui-pagination
+// const pagination = new Pagination('pagination');
 
 const container = document.getElementById('pagination');
 // const pagination = new Pagination(container);
+console.log(container);
+// const cont = document.querySelector('tui-pagination');
 
 const options = {
   totalItems: 250,
