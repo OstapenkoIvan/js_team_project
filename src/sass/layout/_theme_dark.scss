@@ -5,7 +5,7 @@ body.light-theme {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #fff2fd;
-  // transition: all 250ms;
+  transition: all 250ms;
 
   @media screen and (min-width: 768px) {
     background-size: contain;
@@ -39,6 +39,7 @@ body.dark-theme {
   background-color: #0e0e0e;
   background-image: url(../images/background-body/noise-body.svg),
     url(../images/background-body/mobile/bg-body-mobile.svg);
+  transition: all 250ms;
 
   @media screen and (min-width: 768px) {
     background-image: url(../images/background-body/noise-body.svg),
