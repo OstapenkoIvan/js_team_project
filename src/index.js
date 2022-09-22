@@ -4,7 +4,7 @@ import { btn } from './js/theme-lite-dark.js';
 import EventsAPI from './js/eventsAPI';
 
 //Создаем класс на основании класса импорта(имя произвольное)
-const allEvents = new EventsAPI('PL');
+const allEvents = new EventsAPI();
 
 import symbolDefs from '../src/images/symbol-defs.svg';
 
@@ -143,5 +143,3 @@ const options = {
 };
 
 const pagination = new Pagination('pagination', options);
-console.log(pagination);
-console.log(EventsAPI);
