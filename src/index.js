@@ -1,3 +1,5 @@
+import { btn } from './js/theme-lite-dark.js';
+
 //Импортируем API
 import EventsAPI from './js/eventsAPI';
 

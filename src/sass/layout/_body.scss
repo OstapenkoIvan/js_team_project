@@ -1,3 +1,4 @@
+
 .gallery__list{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -44,14 +45,15 @@
     object-position: center;
     width: 100%;
     position: relative;
+
 }
 
 .gallery__card-title {
-    @include font-size(14px, 700, calc(17.07 / 14));
-    color: getColor('font-clr1');
-    margin-top: 8px;
-
+  @include font-size(14px, 700, calc(17.07 / 14));
+  color: getColor('font-clr1');
+  margin-top: 8px;
 }
+
 .gallery__date{
     @include font-size(14px, 400, calc(17.07 / 14));
     margin-top: 8px;
@@ -164,3 +166,4 @@
     }
 
 }
+

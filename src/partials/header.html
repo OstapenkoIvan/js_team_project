@@ -1,34 +1,64 @@
 <header class="page-header">
-    
+  <!-- Розмітка фонового зображення -->
+  <div class="page-header__thumb">
     <div class="container">
-        <div class="page-header__wrapper">
-            <div class="background-image__top"></div>
-            <a class="logo" href="#">
-                <svg class="logo__icon" width="60" height="25">
-                    <use id="use" href="/src/images/symbol-defs.svg#logo-mob"></use>
-                </svg>                
-            </a>
-            
-            <h1 class="page-title">FIND BEST EVENTS AROUND THE WORLD</h1>
-        </div>        
-        
-        <form class="header-form">
-            <label class="hide" for="event-searching">Start searching</label>
-            <div class="header-form__thumb">
-                <input class="header-form__input" type="text" name="text" id="event-searching" placeholder="Start searching">
-                <svg class="header-form__icon" width="12" height="12">
-                    <use href="/src/images/symbol-defs.svg#search-desc"></use>
-                </svg>
-            </div>            
-        
-            <label class="hide" for="country-searching">Choose country</label>
-            <div class="header-form__thumb">
-                <input class="header-form__input" type="select" name="text" id="country-searching" placeholder="Choose country">
-                <svg class="header-form__icon" width="15" height="10">
-                    <use href="/src/images/symbol-defs.svg#polygon"></use>
-                </svg>
-            </div>
-            
-        </form>
-    </div>   
+      <!-- Розмітка логотипу та полукруглого фону -->
+      <div class="background-image__top">
+        <a class="logo" href="#">
+          <svg class="logo__icon" width="60" height="25">
+            <use id="use" href="/src/images/symbol-defs.svg#logo-mob"></use>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Заголовок сторінки -->
+      <h1 class="page-title">FIND BEST EVENTS AROUND THE WORLD</h1>
+
+      <!-- Розмітка форми -->
+      <form class="header-form">
+        <!-- Розмітка инпута вибора івента -->
+        <label class="hide" for="event-searching">Start searching</label>
+
+        <div class="header-form__thumb">
+          <input
+            class="header-form__input"
+            type="text"
+            name="text"
+            id="event-searching"
+            placeholder="Start searching"
+          />
+
+          <button type="submit" class="header-form__search-btn">
+            <svg class="header-form__search-icon" width="12" height="12">
+              <use href="/src/images/symbol-defs.svg#search-desc"></use>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Розмітка інпута вибору країни -->
+        <label class="hide" for="country-searching">Choose country</label>
+
+        <div class="header-form__thumb">
+          <select
+            class="header-form__input"
+            id="country-searching"
+            placeholder="Choose country"
+            required
+          >
+            <option value="" disabled selected>Choose country</option>
+            <option value="US">United States Of America</option>
+            <option value="BR">Brazil</option>
+            <option value="AR">Argentina</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="PL">Poland</option>
+            <option value="NZ ">New Zealand</option>
+          </select>
+          <svg class="header-form__select-icon" width="15" height="10">
+            <use href="/src/images/symbol-defs.svg#polygon"></use>
+          </svg>
+        </div>
+      </form>
+    </div>
+  </div>
 </header>
