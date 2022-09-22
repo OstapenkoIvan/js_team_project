@@ -1,0 +1,120 @@
+.conteiner,
+.conteiner-library {
+  position: relative;
+}
+
+.light-theme {
+  // background-image: url(../images/desktop/light-bg-body-desktop.svg);
+  background-color: floralwhite;
+  transition: all 500ms;
+}
+
+.dark-theme {
+  background-image: url(../images/desktop/bg-body-desc.png);
+
+  transition: all 500ms;
+}
+
+.light {
+  position: absolute;
+  right: 30px;
+  top: 80px;
+
+  // display: none;
+
+  @media screen and (min-width: 768px) {
+    // display: block;
+    right: 30px;
+    top: 123px;
+  }
+}
+
+.btn-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+
+  .theme-night-icon {
+    display: none;
+  }
+}
+
+.dark-theme .btn-theme,
+.light-theme .btn-theme {
+  display: flex;
+}
+
+.dark-theme {
+  .data__content {
+    .title {
+      color: white;
+      transition: all 300ms;
+    }
+  }
+  .pagination__link,
+  .pagination__link--point {
+    color: white;
+    transition: all 300ms;
+  }
+}
+
+.dark-theme .theme-night-icon {
+  display: block;
+}
+.dark-theme .theme-light-icon {
+  display: none;
+}
+
+.light-theme .theme-night-icon {
+  display: none;
+}
+.light-theme .theme-light-icon {
+  display: block;
+}
+
+// Modal - Movie  Dark Theme
+.dark-theme {
+  .modal {
+    background-color: #0e0e0e;
+    color: white;
+  }
+
+  .movies-modal__close-btn {
+    .movies-modal__close-icon {
+      fill: white;
+
+      &:hover {
+        fill: #ff6b08;
+      }
+    }
+  }
+
+  .modal__btns__button {
+    color: white;
+    border: 1px solid white;
+  }
+
+  .movie-modal__vote-count {
+    color: #0e0e0e;
+  }
+}
+
+// Footer Dark - theme
+.dark-theme {
+  .footer-container {
+    color: white;
+    background-color: #0e0e0e;
+  }
+
+  .copyright-logo,
+  .footer-text {
+    color: white;
+  }
+}

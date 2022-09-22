@@ -1,7 +1,7 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
 <symbol id="bg-body-tab" viewBox="0 0 20 32">
-<path fill="#0e0e0e" style="fill: var(--color1, #0e0e0e)" d="M0 0h20.46v33.662h-20.46v-33.662z"></path>
+<path fill="" style="fill: var(--color1, )" d="M0 0h20.46v33.662h-20.46v-33.662z"></path>
 <path fill="#000" style="fill: var(--color2, #000)" opacity="0.03" d="M2.925 6.458c0 0.6-0.487 1.087-1.087 1.087s-1.087-0.487-1.087-1.087c0-0.6 0.487-1.087 1.087-1.087s1.087 0.487 1.087 1.087z"></path>
 <path fill="#000" style="fill: var(--color2, #000)" opacity="0.03" d="M2.925 30.849c0-0.143-0.028-0.284-0.083-0.416s-0.135-0.252-0.236-0.353c-0.101-0.101-0.221-0.181-0.353-0.236s-0.273-0.083-0.416-0.083-0.284 0.028-0.416 0.083c-0.132 0.055-0.252 0.135-0.353 0.236s-0.181 0.221-0.236 0.353-0.083 0.273-0.083 0.416h2.174z"></path>
 <path fill="#000" style="fill: var(--color2, #000)" opacity="0.03" d="M19.708 14.849c0 0.6-0.487 1.087-1.087 1.087s-1.087-0.487-1.087-1.087c0-0.6 0.487-1.087 1.087-1.087s1.087 0.487 1.087 1.087z"></path>
