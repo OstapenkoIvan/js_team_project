@@ -1,11 +1,9 @@
-
 .gallery__list{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 30px;
     row-gap: 32px;
     padding: 10px;
-    margin-bottom: 60px;
   
 }
 .gallery__item-card{
@@ -13,20 +11,30 @@
     display: block;
     min-height: 239px;
     width: 120px;
-    text-align: center;
-    padding-bottom: 5px;
-}
-
-.gallery__link:hover .gallery__img-wrapper::before,
-.gallery__link:focus .gallery__img-wrapper::before{
-    border-color: getColor('font-clr1');
+    padding-bottom: 8px;
+    border-radius: 50px 0 20px;
+ 
 }
 .gallery__img-wrapper{
     overflow: hidden;
     width: 100%;
     height: 154px;
-    border-radius: 50px 0;
+    border-radius: 50px 0;  
     
+}
+.gallery__item-card:hover,
+.gallery__item-card:focus{
+    box-shadow: 0px 1px 1px rgba(220,
+        86,
+        197,
+        0.12), 0px 4px 4px rgba(220,
+            86,
+            197,
+            0.06), 1px 4px 6px rgba(220,
+                86,
+                197,
+                0.16);
+    transform: scale(1.1);
 }
 .gallery__img-wrapper::before{
     content: "";
@@ -39,11 +47,16 @@
         border: 1px solid getColor('bg-clr4');
 
 }
+.gallery__item-card:hover .gallery__img-wrapper::before,
+.gallery__item-card:focus .gallery__img-wrapper::before{
+    border-color: getColor('font-clr1');
+
+}
 .gallery__img{
     object-fit: cover;
     display: block;
-    object-position: center;
     width: 100%;
+    height: 100%;
     position: relative;
 
 }
@@ -52,26 +65,28 @@
   @include font-size(14px, 700, calc(17.07 / 14));
   color: getColor('font-clr1');
   margin-top: 8px;
+  text-align: center;
 }
 
 .gallery__date{
     @include font-size(14px, 400, calc(17.07 / 14));
     margin-top: 8px;
     color: getColor('font-clr2');
+    text-align: center;
 
 }
 .gallery__kontsert-location{
     display: flex;
-    align-items: center;
-    justify-content: center;
     @include font-size(12px, 600, calc(14.63 / 12));
     margin-top: 8px;
     color: getColor('font-clr2');
 
 }
- .gallery__card-icon {
-    display: inline-block;
-     margin-right: 4px;
+.gallery__card-icon {
+    display: block;
+    margin-right: 4px;
+    margin-left: 4px;
+   
 
  }
 @include phone{
@@ -83,9 +98,7 @@
       
 }
 @include tablet{
-    .gallery__list{
-        // max-width: 760px;
-        
+    .gallery__list{ 
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 43px;
@@ -127,7 +140,6 @@
 
 @include desktop{
     .gallery__list {
-        // max-width: 1248px;
         grid-template-columns: repeat(4, 1fr);
         column-gap: 53px;
         row-gap: 59px;
