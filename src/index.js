@@ -34,16 +34,30 @@ console.log(allEvents.getEventById('vvG18Z96SmndKH'));
 const refs = {
   bodyEl: document.querySelector('body'),
   listEl: document.querySelector('.gallery__list'),
+  inputEl: document.querySelector('.header-form__input'),
+  textEl: document.querySelector('.header-form__input'),
+  formEl: document.querySelector('.header-form'),
 };
 
 refs.bodyEl.addEventListener('load', getEvents(), { once: true });
+refs.formEl.addEventListener('submit', getInputData);
+refs.listEl.addEventListener('click', openModal);
+
+async function getInputData(evt) {
+  evt.preventDefault();
+
+  const inputText = evt.target.elements.text.value;
+  const inputCountry = evt.target.elements.country.value;
+
+  const eventsArr = await allEvents.getTextAndCountry(inputText, inputCountry);
+  const appendMarkup = (await eventsArr) && listMarkup(eventsArr);
+
+  clearFields(evt);
+}
 
 async function getEvents() {
   const eventsArr = await allEvents.getAllEvents();
-  await console.log(eventsArr);
   const appendMarkup = await listMarkup(eventsArr);
-  await refs.listEl.insertAdjacentHTML('beforeend', appendMarkup);
-  //   await console.log(appendMarkup);
 }
 
 async function listMarkup(data) {
@@ -58,30 +72,34 @@ async function listMarkup(data) {
         },
         _embedded: { venues },
       }) => `<li class="gallery__item-card"><a href="#"  data-id="${id}">
-        <img src="${images[7].url}" alt="${name}" class="gallery__img">
-        <h3 class="gallery__card-title">${name}</h3>
-        <p class="gallery__date">${localDate}</p>
-        <p class="gallery__kontsert-location">
-        <svg class="gallery__card-icon" width="6" height="9">
-        <use href="${symbolDefs}#location-desc"></use>
-        </svg>${venues[0].name}
-        </p>
-        </a>
-        </li>`
+          <img src="${images[7].url}" alt="${name}" class="gallery__img">
+          <h3 class="gallery__card-title">${name}</h3>
+          <p class="gallery__date">${localDate}</p>
+          <p class="gallery__kontsert-location">
+          <svg class="gallery__card-icon" width="6" height="9">
+          <use href="${symbolDefs}#location-desc"></use>
+          </svg>${venues[0].name}
+          </p>
+          </a>
+          </li>`
     )
     .join('');
 }
 
-/**
- * 
-<picture>
-        <source srcset="/src/images/feedback/girl_1_1x.webp 1x, /src/images/feedback/girl_1_2x.webp 2x"
-                type="image/webp">
-        <source srcset="/src/images/feedback/girl_1_1x.png 1x, /src/images/feedback/girl_1_2x.png 2x"
-                type="image/png">
-        <img class="swiper__face" src="/src/images/feedback/girl_1_1x.png"
-                alt="girl one" loading="lazy" aria-label="First Girl">
-</picture>
- */
+function openModal(evt) {
+  //add h3 check
+  evt.preventDefault();
 
-allEvents.getEventById('vvG18Z96SmndKH');
+  if (evt.target.nodeName === 'UL') {
+    return;
+  }
+
+  const objId = evt.target.closest('a').getAttribute('data-id');
+  const modal = allEvents.dataArr.find(obj => obj.id === objId);
+  console.log(modal);
+}
+
+function clearFields(evt) {
+  evt.target.elements.text.value = '';
+  evt.target.elements.country.value = '';
+}

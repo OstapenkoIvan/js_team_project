@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 class EventsAPI {
   static DATA = {
@@ -12,6 +13,7 @@ class EventsAPI {
     this.perPage = 16;
     this.#page = 0;
     this.dataArr = [];
+    this.totalPages = null;
   }
 
   set page(num) {
@@ -23,7 +25,7 @@ class EventsAPI {
   }
 
   async fetchEvents({ countryCode = null, keyword = null, id = '' }) {
-    const { perPage, page, dataArr } = this;
+    const { perPage, page } = this;
     const { URL, KEY } = EventsAPI.DATA;
     try {
       const response = await axios.get(`events${id}.json`, {
@@ -37,11 +39,22 @@ class EventsAPI {
         },
         headers: { 'Content-Type': 'application/json' },
       });
-      const data = (await response.data._embedded.events)
-        ? response.data._embedded.events
-        : response.data;
-      // const saveData = await data => (dataArr = data);
-      // await console.log(this.dataArr);
+      const { page: fetchPage, _embedded: embedded } = response.data;
+
+      if (!fetchPage.totalPages) {
+        Report.info(
+          'Nothing was found',
+          'Please try to enter different country of keyword and search again',
+          'Okay'
+        );
+        throw new Error('Nothing found');
+      }
+
+      const addPages = await (this.totalPages = fetchPage.totalPages);
+      const addArray = (this.dataArr = embedded.events);
+
+      const data = embedded.events ? embedded.events : response.data;
+
       return data;
     } catch (error) {
       if (error.response) {
@@ -65,6 +78,10 @@ class EventsAPI {
   //enter search parameter(as "string") to get events.
   getSearchEvents(keyword) {
     return this.fetchEvents({ keyword });
+  }
+
+  getTextAndCountry(keyword, countryCode) {
+    return this.fetchEvents({ keyword, countryCode });
   }
 
   //enter id parameter(as "string") to get event details
