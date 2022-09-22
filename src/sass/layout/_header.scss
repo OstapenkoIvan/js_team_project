@@ -1,8 +1,5 @@
-.page-header {
-    background-color: getColor('font-clr3');
-}
-
 .page-header__thumb {
+    min-width: 320px;
     padding-top: 80px;
     padding-bottom: 112px;
     background-color: rgba(11, 11, 11, 0.5);
@@ -75,6 +72,40 @@
 
     .logo:hover>& {
         fill: getColor('font-clr1')
+    }
+}
+
+.theme-box {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+}
+
+.change-theme-button {
+    display: flex;
+    padding: 5px;
+    background: linear-gradient(136.07deg, rgba(196, 196, 196, 0.03) 10.75%,
+                rgba(196, 196, 196, 0) 92.33%);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.bright-theme-icon {
+    fill: getColor('font-clr2');
+
+    .change-theme-button:hover>& {
+            fill: getColor('font-clr1');
+        }
+}
+
+.dark-theme-icon {
+    fill: getColor('font-clr2');
+    
+    .change-theme-button:hover>& {
+        fill: getColor('font-clr1');
     }
 }
 
@@ -178,12 +209,15 @@
 
     fill: #939393;
 
+    pointer-events: none;
+
     transition-property: fill;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     .header-form__input:focus+& {
         fill: getColor('font-clr1');
+        transform: rotate(180deg) translateY(50%)
     }
 }
 
