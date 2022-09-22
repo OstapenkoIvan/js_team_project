@@ -1,18 +1,62 @@
-.conteiner,
-.conteiner-library {
-  position: relative;
+body.dark-theme {
+  height: 100%;
+  color: #0e0e0e;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #fff2fd;
+  // transition: all 250ms;
+
+  @media screen and (min-width: 768px) {
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/background-body/desktop/light-bg-body-desktop.svg);
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 1500px) {
+    background-size: contain;
+  }
 }
 
-.light-theme {
-  // background-image: url(../images/desktop/light-bg-body-desktop.svg);
-  background-color: floralwhite;
-  transition: all 500ms;
-}
+// .dark-theme {
+//   height: 100%;
+//   background-position: 50%;
+//   background-repeat: no-repeat;
+//   background-image: url(../images/desktop/bg-body-desc.png);
+//   background-color: #0e0e0e;
+//   // transition: all 250ms;
+// }
 
-.dark-theme {
-  background-image: url(../images/desktop/bg-body-desc.png);
+body.light-theme {
+  height: 100%;
+  color: #ffffff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #0e0e0e;
+  background-image: url(../images/background-body/noise-body.svg),
+    url(../images/background-body/mobile/bg-body-mobile.svg);
 
-  transition: all 500ms;
+  @media screen and (min-width: 768px) {
+    background-image: url(../images/background-body/noise-body.svg),
+      url(../images/background-body/tablet/bg-body-tablet.svg);
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/background-body/noise-body.svg),
+      url(../images/background-body/desktop/bg-body-desktop.svg);
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 1500px) {
+    background-size: contain;
+  }
+  background-color: #0e0e0e;
+  color: #ffffff;
 }
 
 .light {
@@ -65,56 +109,56 @@
   }
 }
 
-.dark-theme .theme-night-icon {
-  display: block;
-}
-.dark-theme .theme-light-icon {
-  display: none;
-}
+// .dark-theme .theme-night-icon {
+//   display: block;
+// }
+// .dark-theme .theme-light-icon {
+//   display: none;
+// }
 
-.light-theme .theme-night-icon {
-  display: none;
-}
-.light-theme .theme-light-icon {
-  display: block;
-}
+// .light-theme .theme-night-icon {
+//   display: none;
+// }
+// .light-theme .theme-light-icon {
+//   display: block;
+// }
 
 // Modal - Movie  Dark Theme
-.dark-theme {
-  .modal {
-    background-color: #0e0e0e;
-    color: white;
-  }
+// .dark-theme {
+//   .modal {
+//     background-color: #0e0e0e;
+//     color: white;
+//   }
 
-  .movies-modal__close-btn {
-    .movies-modal__close-icon {
-      fill: white;
+//   .movies-modal__close-btn {
+//     .movies-modal__close-icon {
+//       fill: white;
 
-      &:hover {
-        fill: #ff6b08;
-      }
-    }
-  }
+//       &:hover {
+//         fill: #ff6b08;
+//       }
+//     }
+//   }
 
-  .modal__btns__button {
-    color: white;
-    border: 1px solid white;
-  }
+//   .modal__btns__button {
+//     color: white;
+//     border: 1px solid white;
+//   }
 
-  .movie-modal__vote-count {
-    color: #0e0e0e;
-  }
-}
+//   .movie-modal__vote-count {
+//     color: #0e0e0e;
+//   }
+// }
 
 // Footer Dark - theme
-.dark-theme {
-  .footer-container {
-    color: white;
-    background-color: #0e0e0e;
-  }
+// .dark-theme {
+//   .footer-container {
+//     color: white;
+//     background-color: #0e0e0e;
+//   }
 
-  .copyright-logo,
-  .footer-text {
-    color: white;
-  }
-}
+//   .copyright-logo,
+//   .footer-text {
+//     color: white;
+//   }
+// }
