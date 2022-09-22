@@ -7,25 +7,22 @@ class EventsAPI {
     URL: 'https://app.ticketmaster.com/discovery/v2/',
   };
 
-  #page;
-
   constructor() {
     this.perPage = 16;
-    this.#page = 0;
+    this.page = 0;
     this.dataArr = [];
-    this.totalPages = null;
+    this.totalElements = '';
+    this.textInput = '';
+    this.countryInput = '';
   }
 
-  set page(num) {
-    this.#page = num;
-  }
-
-  get page() {
-    return this.#page;
-  }
-
-  async fetchEvents({ countryCode = null, keyword = null, id = '' }) {
-    const { perPage, page } = this;
+  async fetchEvents({
+    id = '',
+    keyword = null,
+    countryCode = null,
+    page = null,
+  }) {
+    const { perPage } = this;
     const { URL, KEY } = EventsAPI.DATA;
     try {
       const response = await axios.get(`events${id}.json`, {
@@ -33,15 +30,15 @@ class EventsAPI {
         params: {
           apikey: KEY,
           size: perPage,
-          page: page,
-          countryCode,
           keyword,
+          countryCode,
+          page,
         },
         headers: { 'Content-Type': 'application/json' },
       });
       const { page: fetchPage, _embedded: embedded } = response.data;
 
-      if (!fetchPage.totalPages) {
+      if (!fetchPage.totalElements) {
         Report.info(
           'Nothing was found',
           'Please try to enter different country of keyword and search again',
@@ -50,8 +47,8 @@ class EventsAPI {
         throw new Error('Nothing found');
       }
 
-      const addPages = await (this.totalPages = fetchPage.totalPages);
-      const addArray = (this.dataArr = embedded.events);
+      this.totalElements = fetchPage.totalElements;
+      this.dataArr = embedded.events;
 
       const data = embedded.events ? embedded.events : response.data;
 
@@ -80,8 +77,8 @@ class EventsAPI {
     return this.fetchEvents({ keyword });
   }
 
-  getTextAndCountry(keyword, countryCode) {
-    return this.fetchEvents({ keyword, countryCode });
+  getTextAndCountry(keyword, countryCode, page) {
+    return this.fetchEvents({ keyword, countryCode, page });
   }
 
   //enter id parameter(as "string") to get event details
