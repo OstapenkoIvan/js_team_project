@@ -33,6 +33,11 @@ console.log(allEvents.getSearchEvents('CA', 'Raptors'));
 
 //Можем ввести ID мероприятия и получить по нему данные
 console.log(allEvents.getEventById('vvG18Z96SmndKH'));
+
+
+import './js/footer';
+import './js/go_top';
+
  */
 
 //============================================================
@@ -127,3 +132,4 @@ const options = {
 const pagination = new Pagination('pagination', options);
 console.log(pagination);
 console.log(EventsAPI);
+
