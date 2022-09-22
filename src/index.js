@@ -20,3 +20,6 @@ console.log(allEvents.getSearchEvents('Raptors'));
 
 //Можем ввести ID мероприятия и получить по нему данные
 console.log(allEvents.getEventById('vvG18Z96SmndKH'));
+
+import './js/footer';
+import './js/go_top';
