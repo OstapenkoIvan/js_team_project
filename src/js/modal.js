@@ -1,6 +1,7 @@
 import modal from '../hbs/modal.hbs';
 import sprite from '../images/sprite.svg';
 import EventsAPI from './eventsAPI';
+import modalEvtPrice from '../hbs/modalEvtPrice.hbs';
 
 //* екземпляр класу
 const allEvents = new EventsAPI();
@@ -28,12 +29,12 @@ itemList.addEventListener('click', event => {
   event.preventDefault();
   let { target } = event;
   if (target.nodeName === 'UL') {
-    console.log('UL');
+    // console.log('UL');
     return;
   }
   const objId = target.closest('a').getAttribute('data-id');
-  console.log(objId);
-  getEventByIdForModal(objId)
+  // console.log(objId);
+  getEventByIdForModal(objId);
 });
 async function getEventByIdForModal(cardId) {
   if (cardId === undefined) {
@@ -61,7 +62,7 @@ async function getEventByIdForModal(cardId) {
 
   let [priceRanges1 = {}, priceRanges2 = {}] = priceRanges;
 
-console.log(eventObj);
+  // console.log(eventObj);
 
   let forModalObj = {
     id: id,
@@ -73,8 +74,8 @@ console.log(eventObj);
     city: venues[0].city.name,
     location: venues[0].name,
     date: dates.start.localDate,
-    time: dates.start.localTime,
-    timeZone: dates.timezone,
+    time: dates.start.localTime.slice(0, 5),
+    timeZone: dates.timezone.replaceAll('_', ' '),
     genre: classifications[0].genre.name,
     toBuyUrl: url,
     priceStandart: {
@@ -91,7 +92,7 @@ console.log(eventObj);
     },
     sprite,
   };
-  console.log(forModalObj);
+  // console.log(forModalObj);
   createModalContent(forModalObj);
 }
 
@@ -130,9 +131,8 @@ function toCloseModal() {
   function onGetMoreInfoBtnClick(evt) {
     let { target } = evt;
     let keyWord = target.dataset.keyWord;
-    console.log(keyWord);
+    // console.log(keyWord);
     closeModal();
-
   }
 }
 function createModalContent(obj) {
@@ -140,74 +140,26 @@ function createModalContent(obj) {
   moreInfoBtn.dataset.keyWord = obj.genre;
   toOpenModal();
 
-  toNotActiveLink(obj);
+  toCheckStandartPrice(obj);
+  toCheckVipPrice(obj);
 }
-
-function toNotActiveLink(obj) {
-
-  let tuBuyLinksInfo = modalContentEl.querySelectorAll('.event.--price');
-  tuBuyLinksInfo.forEach(el => {
-    let elPriceList = el.querySelector('.js-price');
-    let elPriceMIN = elPriceList.querySelector('.js-price-min');
-    let elPriceMAX = elPriceList.querySelector('.js-price-max');
-    // console.log(elPriceList);
-  });
+function toCheckStandartPrice(obj) {
+  let elPriceStandart = modalContentEl.querySelector('.toBuy.--Standart');
+  let elPriceStandartLink = elPriceStandart.querySelector('.js-link-standart');
+  if (
+    Object.values(obj.priceStandart)[1] &&
+    Object.values(obj.priceStandart)[2]
+  ) {
+    return;
+  }
+  elPriceStandartLink.classList.add('--notActiveLink');
 }
-function createToBuyZoneComp(obj) {
-  let {} = obj;
-
-  return `
-  <div class='zone-toBuy'>
-      <span
-        class='event --price --standart'
-        data-price-min=''
-        data-price-max=''
-      >
-        <svg class='btn-icon' width='29' height='19'>
-          <use href='#icon-ticket'></use>
-        </svg>
-        Standart
-        <span class='js-price'><span class='js-price'>
-          <span class="js-price-min"></span>
-           -
-          <span class="js-price-max"></span>
-          <span></span>
-        </span>
-        </span>
-      </span>
-      <a
-        class='linkBtn --toBuyTicketLink'
-        href=''
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        BUY TICKETS
-      </a>
-      <span
-        class='event --price --vip'
-        data-price-min=''
-        data-price-max=''
-      >
-        <svg class='btn-icon' width='29' height='19'>
-          <use href='#icon-ticket'></use>
-        </svg>
-        VIP
-        <span class='js-price'>
-          <span class="js-price-min"></span>
-           -
-          <span class="js-price-max"></span>
-          <span></span>
-        </span>
-
-      </span>
-      <a
-        class='linkBtn --toBuyTicketLink'
-        href=''
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        BUY TICKETS
-      </a>
-    </div>
-    `;
+function toCheckVipPrice(obj) {
+  let elPriceVip = modalContentEl.querySelector('.toBuy.--Vip');
+  let elPriceVipLink = elPriceVip.querySelector('.js-link-vip');
+  if (Object.values(obj.priceVIP)[1] && Object.values(obj.priceVIP)[2]) {
+    return;
+  }
+  elPriceVipLink.classList.add('--notActiveLink');
+  console.log(obj.priceVIP);
 }

@@ -4,7 +4,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 
   overflow: hidden;
   top: 50px;
@@ -53,9 +53,108 @@
     flex-direction: column;
     gap: 24px;
   }
+  &-middle {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @media screen and (min-width: 1280px) {
+      flex-direction: row;
+    }
+    & .side {
+      &-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        text-align: center;
+        background-color: transparent;
+        @media screen and (min-width: 768px) {
+          text-align: left;
+          align-items: flex-start;
+        }
+        @media screen and (min-width: 1280px) {
+          align-items: flex-start;
+        }
+      }
+      &-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+
+        text-align: center;
+        background-color: transparent;
+        @media screen and (min-width: 768px) {
+          text-align: left;
+          align-items: flex-start;
+        }
+        @media screen and (min-width: 1280px) {
+          align-items: flex-start;
+        }
+      }
+    }
+  }
+  & .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    & .title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.2;
+      color: getColor('font-clr1');
+      text-transform: uppercase;
+
+      margin-bottom: 5px;
+
+      @media screen and (min-width: 768px) {
+        font-size: 24px;
+      }
+    }
+    & .event {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.25;
+
+      margin-bottom: 3px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+      &.--price {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+    &.--toBuy {
+      & .toBuy.--zone,
+      & .toBuy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        @media screen and (min-width: 768px) {
+          align-items: flex-start;
+        }
+      }
+    }
+    @media screen and (min-width: 768px) {
+      align-items: flex-start;
+    }
+  }
   &-top {
     display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
     justify-content: center;
+    @media screen and (min-width: 768px) {
+      text-align: left;
+      align-items: flex-start;
+    }
   }
   &-logo {
     &-box {
@@ -84,7 +183,6 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-
     gap: 32px;
   }
   &-img {
@@ -96,74 +194,6 @@
       border-top-left-radius: 100px;
       @media screen and (min-width: 768px) {
         display: block;
-      }
-    }
-  }
-  &-side {
-    &-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-
-      text-align: center;
-      background-color: transparent;
-      @media screen and (min-width: 768px) {
-        text-align: left;
-        align-items: flex-start;
-      }
-      @media screen and (min-width: 1280px) {
-        align-items: flex-start;
-      }
-      & .section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        width: 100%;
-        &.--toBuy {
-          & .toBuy.--zone,
-          & .toBuy {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            @media screen and (min-width: 768px) {
-              align-items: flex-start;
-            }
-          }
-        }
-        @media screen and (min-width: 768px) {
-          align-items: flex-start;
-        }
-      }
-      & .title {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 1.2;
-        color: getColor('font-clr1');
-        text-transform: uppercase;
-
-        margin-bottom: 5px;
-
-        @media screen and (min-width: 768px) {
-          font-size: 24px;
-        }
-      }
-      & .event {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.25;
-
-        margin-bottom: 3px;
-        @media screen and (min-width: 768px) {
-          font-size: 18px;
-        }
-        &.--price {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
       }
     }
   }
@@ -271,6 +301,7 @@
       background-color: #2e009a;
     }
     &.--notActiveLink {
+      pointer-events: none;
       background-color: #4c00fe6e;
       cursor: default;
       &:hover,
