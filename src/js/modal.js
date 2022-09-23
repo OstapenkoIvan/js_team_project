@@ -22,17 +22,19 @@ let {
   moreInfoBtn,
 } = modalRefs;
 
-console.log(modalRefs);
+// console.log(modalRefs);
 
 itemList.addEventListener('click', event => {
   event.preventDefault();
   let { target } = event;
-  if (target.dataset.action !== 'openModal') {
+  if (target.nodeName === 'UL') {
+    console.log('UL');
     return;
   }
-  getEventByIdForModal(target.dataset.id);
+  const objId = target.closest('a').getAttribute('data-id');
+  console.log(objId);
+  getEventByIdForModal(objId)
 });
-
 async function getEventByIdForModal(cardId) {
   if (cardId === undefined) {
     return;
@@ -44,6 +46,7 @@ async function getEventByIdForModal(cardId) {
     // return imageObj.url
   }
   let eventObj = await allEvents.getEventById(cardId);
+
   let {
     id,
     name,
@@ -57,6 +60,8 @@ async function getEventByIdForModal(cardId) {
   } = eventObj;
 
   let [priceRanges1 = {}, priceRanges2 = {}] = priceRanges;
+
+console.log(eventObj);
 
   let forModalObj = {
     id: id,
@@ -127,9 +132,9 @@ function toCloseModal() {
     let keyWord = target.dataset.keyWord;
     console.log(keyWord);
     closeModal();
+
   }
 }
-
 function createModalContent(obj) {
   modalContentEl.innerHTML = modal(obj);
   moreInfoBtn.dataset.keyWord = obj.genre;
@@ -137,17 +142,17 @@ function createModalContent(obj) {
 
   toNotActiveLink(obj);
 }
+
 function toNotActiveLink(obj) {
-  
+
   let tuBuyLinksInfo = modalContentEl.querySelectorAll('.event.--price');
   tuBuyLinksInfo.forEach(el => {
     let elPriceList = el.querySelector('.js-price');
     let elPriceMIN = elPriceList.querySelector('.js-price-min');
     let elPriceMAX = elPriceList.querySelector('.js-price-max');
-    console.log(elPriceList);
+    // console.log(elPriceList);
   });
 }
-
 function createToBuyZoneComp(obj) {
   let {} = obj;
 

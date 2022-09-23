@@ -62,8 +62,8 @@
       position: relative;
       overflow: hidden;
 
-      width: 102px;
-      height: 102px;
+      width: 120px;
+      height: 120px;
 
       background-color: rgba(219, 219, 219, 0.121);
 
@@ -172,7 +172,7 @@
     justify-content: center;
   }
 }
-
+/* --------------------------- КНОПКИ МОДАЛЬНОГО ВІКНА */
 .button {
   display: block;
   border-style: none;
@@ -238,6 +238,7 @@
     }
   }
 }
+/* --------------------------- ПОСИЛАННЯ МОДАЛЬНОГО ВІКНА */
 .linkBtn {
   display: block;
   border-style: none;
@@ -270,14 +271,11 @@
       background-color: #2e009a;
     }
     &.--notActiveLink {
-      color: #4c00fe;
-      background-color: transparent;
-      border-color: #4c00fe;
+      background-color: #4c00fe6e;
+      cursor: default;
       &:hover,
       &:focus {
-        color: #4c00fe;
-        background-color: transparent;
-        border-color: #4c00fe;
+        background-color: #4c00fe6e;
       }
     }
   }
