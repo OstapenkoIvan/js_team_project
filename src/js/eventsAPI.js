@@ -154,7 +154,7 @@ class EventsAPI {
         ? embedded.attractions
         : response.data;
 
-      return data;
+      return { data, totalElements };
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);

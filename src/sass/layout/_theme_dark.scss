@@ -122,3 +122,29 @@ body.light-theme {
     border-radius: 50%;
   }
 }
+
+body.light-theme {
+  .page-header__thumb {
+    box-shadow: 0px 11px 127px 5px rgba(220, 86, 197, 0.8),
+      inset 0px 11px 104px -27px rgba(255, 255, 255, 1);
+    // animation: flicker 3s linear infinite;
+
+    // @keyframes flicker {
+    //   0%,
+    //   18%,
+    //   22%,
+    //   25%,
+    //   53%,
+    //   57%,
+    //   100% {
+    //     box-shadow: 0px 11px 127px 5px rgba(220, 86, 197, 0.8),
+    //       inset 0px 11px 104px -27px rgba(255, 255, 255, 0.3);
+    //   }
+    //   20%,
+    //   24%,
+    //   55% {
+    //     box-shadow: none;
+    //   }
+    // }
+  }
+}
