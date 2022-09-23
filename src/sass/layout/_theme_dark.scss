@@ -1,13 +1,16 @@
 body.light-theme {
   height: 100%;
-  color: #0e0e0e;
-  background-position: 50%;
+  color: getColor('font-clr3');
+
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #fff2fd;
-  transition: all 250ms;
+  background-color: getColor('font-clr1');
+  transition: all 300ms;
+  background-image: url(../images/background-body/mobile/light-bg-body-mobile.svg);
 
   @media screen and (min-width: 768px) {
+    background-image: url(../images/background-body/tablet/light-bg-body-tablet.svg);
     background-size: contain;
   }
 
@@ -20,26 +23,16 @@ body.light-theme {
     background-size: contain;
   }
 }
-
-// .dark-theme {
-//   height: 100%;
-//   background-position: 50%;
-//   background-repeat: no-repeat;
-//   background-image: url(../images/desktop/bg-body-desc.png);
-//   background-color: #0e0e0e;
-//   // transition: all 250ms;
-// }
-
 body.dark-theme {
   height: 100%;
-  color: #ffffff;
+  color: getColor('font-clr2');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: #0e0e0e;
+  background-color: getColor('font-clr3');
+  transition: all 300ms;
   background-image: url(../images/background-body/noise-body.svg),
     url(../images/background-body/mobile/bg-body-mobile.svg);
-  transition: all 250ms;
 
   @media screen and (min-width: 768px) {
     background-image: url(../images/background-body/noise-body.svg),
@@ -61,104 +54,19 @@ body.dark-theme {
 .light-theme {
   .gallery__date,
   .gallery__kontsert-location {
-    color: black;
-    // transition: all 300ms;
+    color: getColor('font-clr3');
+    transition: all 300ms;
   }
   .gallery__card-icon {
-    fill: #0e0e0e;
+    fill: getColor('font-clr3');
+  }
+  .gallery__card-icon {
+    fill: getColor('font-clr1');
   }
 }
 
-// .gallery__card-icon {
-//   fill: purple;
-// }
-
-.light {
-  position: absolute;
-  right: 30px;
-  top: 80px;
-
-  // display: none;
-
-  @media screen and (min-width: 768px) {
-    // display: block;
-    right: 30px;
-    top: 123px;
-  }
+.gallery__card-icon {
+  fill: getColor('font-clr1');
+  transition: all 300ms;
+  // fill: #fff;
 }
-
-.btn-theme {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-
-  cursor: pointer;
-
-  .theme-night-icon {
-    display: none;
-  }
-}
-
-.dark-theme .btn-theme,
-.light-theme .btn-theme {
-  display: flex;
-}
-
-// .dark-theme .theme-night-icon {
-//   display: block;
-// }
-// .dark-theme .theme-light-icon {
-//   display: none;
-// }
-
-// .light-theme .theme-night-icon {
-//   display: none;
-// }
-// .light-theme .theme-light-icon {
-//   display: block;
-// }
-
-// Modal - Movie  Dark Theme
-// .dark-theme {
-//   .modal {
-//     background-color: #0e0e0e;
-//     color: white;
-//   }
-
-//   .movies-modal__close-btn {
-//     .movies-modal__close-icon {
-//       fill: white;
-
-//       &:hover {
-//         fill: #ff6b08;
-//       }
-//     }
-//   }
-
-//   .modal__btns__button {
-//     color: white;
-//     border: 1px solid white;
-//   }
-
-//   .movie-modal__vote-count {
-//     color: #0e0e0e;
-//   }
-// }
-
-// Footer Dark - theme
-// .dark-theme {
-//   .footer-container {
-//     color: white;
-//     background-color: #0e0e0e;
-//   }
-
-//   .copyright-logo,
-//   .footer-text {
-//     color: white;
-//   }
-// }
