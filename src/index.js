@@ -146,5 +146,3 @@ const options = {
 };
 
 const pagination = new Pagination('pagination', options);
-console.log(pagination);
-console.log(EventsAPI);
