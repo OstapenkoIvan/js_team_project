@@ -1,6 +1,6 @@
-.page-header {
-  background-color: getColor('font-clr3');
-}
+// .page-header {
+//   background-color: getColor('font-clr3');
+// }
 
 .page-header__thumb {
   padding-top: 80px;
@@ -10,7 +10,6 @@
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: cover;
-
 
   @include bg-adapt-2x {
     background-image: url('/src/images/tablet/header-bg-tablet(2x).png');
@@ -81,37 +80,40 @@
 }
 
 .theme-box {
-    position: absolute;
-    top: 16px;
-    right: 20px;
+  position: absolute;
+  top: 16px;
+  right: 20px;
 }
 
 .change-theme-button {
-    display: flex;
-    padding: 5px;
-    background: linear-gradient(136.07deg, rgba(196, 196, 196, 0.03) 10.75%,
-                rgba(196, 196, 196, 0) 92.33%);
-    backdrop-filter: blur(15px);
-    border-radius: 50%;
-    border: 0;
-    outline: none;
-    cursor: pointer;
+  display: flex;
+  padding: 5px;
+  background: linear-gradient(
+    136.07deg,
+    rgba(196, 196, 196, 0.03) 10.75%,
+    rgba(196, 196, 196, 0) 92.33%
+  );
+  backdrop-filter: blur(15px);
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  cursor: pointer;
 }
 
 .light-theme-icon {
-    fill: getColor('font-clr2');
+  fill: getColor('font-clr2');
 
-    .change-theme-button:hover>& {
-            fill: getColor('font-clr1');
-        }
+  .change-theme-button:hover > & {
+    fill: getColor('font-clr1');
+  }
 }
 
 .dark-theme-icon {
-    fill: getColor('font-clr2');
-    
-    .change-theme-button:hover>& {
-        fill: getColor('font-clr1');
-    }
+  fill: getColor('font-clr2');
+
+  .change-theme-button:hover > & {
+    fill: getColor('font-clr1');
+  }
 }
 
 .page-title {
@@ -201,7 +203,8 @@
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  .header-form__search-btn:hover > & {
+  .header-form__search-btn:hover > &,
+  .header-form__search-btn:focus > & {
     fill: getColor('font-clr1');
   }
 }
@@ -214,17 +217,96 @@
 
   fill: #939393;
 
-    pointer-events: none;
+  pointer-events: none;
 
-    transition-property: fill;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-    .header-form__input:focus+& {
-        fill: getColor('font-clr1');
-        transform: rotate(180deg) translateY(50%)
-    }
+  .select:focus > & {
+    fill: getColor('font-clr1');
+    transform: rotate(180deg) translateY(50%);
+  }
+}
 
+.select {
+  position: relative;
+  height: 40px;
+  width: 280px;
+  font-size: 16px;
+  line-height: 1.25;
+
+  color: #939393;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 0;
+  outline: none;
+
+  transition-property: border;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus {
+    border: 1px solid getColor('font-clr1');
+    border-bottom: 0;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+// .focusAlways {
+//     border: 1px solid getColor('font-clr1');
+//     border-bottom: 0;
+//     outline: none;
+// }
+
+.select__header {
+  padding: 10px 64px 10px 32px;
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.select__current {
+  max-width: 184px;
+  overflow: hidden;
+  display: block;
+}
+
+.select__body {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 20px 20px;
+
+  .select:focus > & {
+    border: 1px solid getColor('font-clr1');
+    border-top: 0;
+    left: -1;
+  }
+}
+
+.select__body.is-active {
+  display: block;
+}
+
+.select__item {
+  cursor: pointer;
+  padding: 2px 32px;
+
+  &:hover,
+  &:focus {
+    background-color: getColor('font-clr1');
+    color: getColor('font-clr2');
+    border: none;
+    outline: none;
+  }
 }
 
 @include tablet {
@@ -264,6 +346,18 @@
     width: 336px;
     max-width: none;
   }
+
+  .select {
+    width: 336px;
+  }
+
+  .select__current {
+    max-width: 240px;
+  }
+
+  .select__body {
+    width: 336px;
+  }
 }
 
 @include desktop {
@@ -294,6 +388,14 @@
   }
 
   .header-form__input {
+    width: 288px;
+  }
+
+  .select {
+    width: 288px;
+  }
+
+  .select__body {
     width: 288px;
   }
 }

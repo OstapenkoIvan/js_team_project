@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 class EventsAPI {
   static DATA = {
@@ -6,24 +7,22 @@ class EventsAPI {
     URL: 'https://app.ticketmaster.com/discovery/v2/',
   };
 
-  #page;
-
   constructor() {
     this.perPage = 16;
-    this.#page = 0;
+    this.page = 0;
     this.dataArr = [];
+    this.totalElements = '';
+    this.textInput = '';
+    this.countryInput = '';
   }
 
-  set page(num) {
-    this.#page = num;
-  }
-
-  get page() {
-    return this.#page;
-  }
-
-  async fetchEvents({ countryCode = null, keyword = null, id = '' }) {
-    const { perPage, page, dataArr } = this;
+  async fetchEvents({
+    id = '',
+    keyword = null,
+    countryCode = null,
+    page = null,
+  }) {
+    const { perPage } = this;
     const { URL, KEY } = EventsAPI.DATA;
     try {
       const response = await axios.get(`events${id}.json`, {
@@ -31,17 +30,28 @@ class EventsAPI {
         params: {
           apikey: KEY,
           size: perPage,
-          page: page,
-          countryCode,
           keyword,
+          countryCode,
+          page,
         },
         headers: { 'Content-Type': 'application/json' },
       });
-      const data = (await response.data._embedded.events)
-        ? response.data._embedded.events
-        : response.data;
-      // const saveData = await data => (dataArr = data);
-      // await console.log(this.dataArr);
+      const { page: fetchPage, _embedded: embedded } = response.data;
+
+      if (!fetchPage.totalElements) {
+        Report.info(
+          'Nothing was found',
+          'Please try to enter different country of keyword and search again',
+          'Okay'
+        );
+        throw new Error('Nothing found');
+      }
+
+      this.totalElements = fetchPage.totalElements;
+      this.dataArr = embedded.events;
+
+      const data = embedded.events ? embedded.events : response.data;
+
       return data;
     } catch (error) {
       if (error.response) {
@@ -65,6 +75,10 @@ class EventsAPI {
   //enter search parameter(as "string") to get events.
   getSearchEvents(keyword) {
     return this.fetchEvents({ keyword });
+  }
+
+  getTextAndCountry(keyword, countryCode, page) {
+    return this.fetchEvents({ keyword, countryCode, page });
   }
 
   //enter id parameter(as "string") to get event details
