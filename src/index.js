@@ -62,9 +62,9 @@ async function listMarkup(data) {
         _embedded: { venues },
       }) => `
       <li class="gallery__item-card">
-        <a href="#" data-action="openModal" data-id="${id}">
+        <a href="#" data-id="${id}">
           <div class="card-box">
-            <img src="${images[7].url}" alt="${name}"   class="gallery__img">
+            <img src="${images[7].url}" alt="${name}" class="gallery__img">
             <h3 class="gallery__card-title">${name}</h3>
             <p class="gallery__date">${localDate}</p>
             <p class="gallery__kontsert-location">
