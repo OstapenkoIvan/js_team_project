@@ -37,6 +37,12 @@ async function getEventByIdForModal(cardId) {
   if (cardId === undefined) {
     return;
   }
+  function toFindImgLink(arr, width, ratio) {
+    return arr.find(el => {
+      el.ratio === ratio && el.width === width;
+    });
+    // return imageObj.url
+  }
   let eventObj = await allEvents.getEventById(cardId);
   let {
     id,
@@ -55,8 +61,8 @@ async function getEventByIdForModal(cardId) {
   let forModalObj = {
     id: id,
     name: name,
-    imageLogo: images[0].url,
-    image: images[7].url,
+    imageLogo: images.find(el => el.ratio === '3_2' && el.width === 640).url,
+    image: images.find(el => el.ratio === '16_9' && el.width === 2048).url,
     description: info,
     country: venues[0].country.name,
     city: venues[0].city.name,
@@ -67,11 +73,13 @@ async function getEventByIdForModal(cardId) {
     genre: classifications[0].genre.name,
     toBuyUrl: url,
     priceStandart: {
+      type: 'Standart',
       min: priceRanges1.min,
       max: priceRanges1.max,
       currency: priceRanges1.currency,
     },
     priceVIP: {
+      type: 'VIP',
       min: priceRanges2.min,
       max: priceRanges2.max,
       currency: priceRanges2.currency,
@@ -123,8 +131,6 @@ function toCloseModal() {
 }
 
 function createModalContent(obj) {
-
-
   modalContentEl.innerHTML = modal(obj);
   moreInfoBtn.dataset.keyWord = obj.genre;
   toOpenModal();
@@ -132,25 +138,18 @@ function createModalContent(obj) {
   toNotActiveLink(obj);
 }
 function toNotActiveLink(obj) {
+  
   let tuBuyLinksInfo = modalContentEl.querySelectorAll('.event.--price');
   tuBuyLinksInfo.forEach(el => {
     let elPriceList = el.querySelector('.js-price');
     let elPriceMIN = elPriceList.querySelector('.js-price-min');
-
     let elPriceMAX = elPriceList.querySelector('.js-price-max');
-
-    // console.log(elPriceMIN.textContent, elPriceMAX.textContent);
+    console.log(elPriceList);
   });
-
-  console.log(obj.priceStandart.min, obj.priceStandart.max); 
-  console.log(obj.priceVIP.min, obj.priceVIP.max);
-
 }
 
 function createToBuyZoneComp(obj) {
-  let {} = obj
-
-
+  let {} = obj;
 
   return `
   <div class='zone-toBuy'>

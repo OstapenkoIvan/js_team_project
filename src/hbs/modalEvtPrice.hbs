@@ -1,17 +1,14 @@
 <span
-  class='event --price --standart'
-  data-price-min='{{priceStandart.min}}'
-  data-price-max='{{priceStandart.min}}'
->
+  class='event --price --standart'>
   <svg class='btn-icon' width='29' height='19'>
     <use href='{{sprite}}#icon-ticket'></use>
   </svg>
-  Standart
+  {{type}}
   <span class='js-price'><span class='js-price'>
-      <span class='js-price-min'>{{priceStandart.min}}</span>
+      <span class='js-price-min'>{{min}}</span>
       -
-      <span class='js-price-max'>{{priceStandart.max}}</span>
-      <span>{{priceStandart.currency}}</span>
+      <span class='js-price-max'>{{max}}</span>
+      <span>{{currency}}</span>
     </span>
   </span>
 </span>
