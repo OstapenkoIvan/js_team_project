@@ -2,6 +2,7 @@ import { btn } from './js/theme-lite-dark.js';
 
 //Импортируем API
 import EventsAPI from './js/eventsAPI';
+import headerJS from './js/header';
 
 //Создаем класс на основании класса импорта(имя произвольное)
 const allEvents = new EventsAPI('PL');
