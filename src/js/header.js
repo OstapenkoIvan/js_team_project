@@ -15,7 +15,6 @@ refs.countryChosenEl.addEventListener('blur', getEventsByCountry);
 async function getEventsByCountry(event) {
   event.preventDefault();
   const countryChosenElValue = event.currentTarget.value;
-  console.log(countryChosenElValue);
   const eventsArr = await allEvents.getAllEvents(countryChosenElValue);
   // console.log(eventsArr);
   const appendMarkup = await listMarkup(eventsArr);
