@@ -5,11 +5,10 @@
 
   @media screen and (max-width: 767px) {
     margin-bottom: 27px;
-  min-width: 320px;
+    min-width: 320px;
   }
   @media screen and (min-width: 768px) {
     margin-bottom: 18px;
-    
   }
 
   @media screen and (min-width: 1280px) {
@@ -82,7 +81,7 @@
   width: 40px;
   height: 40px;
   color: #dc56c5;
-  // border: 1px solid;
+  border: 1px solid;
   border-radius: 50px;
   font-weight: 400;
   line-height: 30px;
@@ -92,20 +91,17 @@
   right: 3px;
   font-size: xxx-large;
 
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     visibility: hidden;
-}
-@media screen and (min-width: 768px) {
- 
-  visibility: hidden;
-  
-}
+  }
+  @media screen and (min-width: 768px) {
+    visibility: hidden;
+  }
 
-@media screen and (min-width: 1280px) {
-  font-weight: 600;
-  visibility: initial;
-
-}
+  @media screen and (min-width: 1280px) {
+    font-weight: 600;
+    visibility: initial;
+  }
 }
 
 #go-top:hover {
