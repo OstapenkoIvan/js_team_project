@@ -1,120 +1,72 @@
-.conteiner,
-.conteiner-library {
-  position: relative;
+body.light-theme {
+  height: 100%;
+  color: getColor('font-clr3');
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: getColor('font-clr1');
+  transition: all 300ms;
+  background-image: url(../images/background-body/mobile/light-bg-body-mobile.svg);
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../images/background-body/tablet/light-bg-body-tablet.svg);
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/background-body/desktop/light-bg-body-desktop.svg);
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 1500px) {
+    background-size: contain;
+  }
+}
+body.dark-theme {
+  height: 100%;
+  color: getColor('font-clr2');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: getColor('font-clr3');
+  transition: all 300ms;
+  background-image: url(../images/background-body/noise-body.svg),
+    url(../images/background-body/mobile/bg-body-mobile.svg);
+
+  @media screen and (min-width: 768px) {
+    background-image: url(../images/background-body/noise-body.svg),
+      url(../images/background-body/tablet/bg-body-tablet.svg);
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url(../images/background-body/noise-body.svg),
+      url(../images/background-body/desktop/bg-body-desktop.svg);
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 1500px) {
+    background-size: contain;
+  }
 }
 
 .light-theme {
-  // background-image: url(../images/desktop/light-bg-body-desktop.svg);
-  background-color: floralwhite;
-  transition: all 500ms;
-}
-
-.dark-theme {
-  background-image: url(../images/desktop/bg-body-desc.png);
-
-  transition: all 500ms;
-}
-
-.light {
-  position: absolute;
-  right: 30px;
-  top: 80px;
-
-  // display: none;
-
-  @media screen and (min-width: 768px) {
-    // display: block;
-    right: 30px;
-    top: 123px;
-  }
-}
-
-.btn-theme {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-
-  cursor: pointer;
-
-  .theme-night-icon {
-    display: none;
-  }
-}
-
-.dark-theme .btn-theme,
-.light-theme .btn-theme {
-  display: flex;
-}
-
-.dark-theme {
-  .data__content {
-    .title {
-      color: white;
-      transition: all 300ms;
-    }
-  }
-  .pagination__link,
-  .pagination__link--point {
-    color: white;
+  .gallery__date,
+  .gallery__kontsert-location {
+    color: getColor('font-clr3');
     transition: all 300ms;
   }
-}
-
-.dark-theme .theme-night-icon {
-  display: block;
-}
-.dark-theme .theme-light-icon {
-  display: none;
-}
-
-.light-theme .theme-night-icon {
-  display: none;
-}
-.light-theme .theme-light-icon {
-  display: block;
-}
-
-// Modal - Movie  Dark Theme
-.dark-theme {
-  .modal {
-    background-color: #0e0e0e;
-    color: white;
+  .gallery__card-icon {
+    fill: getColor('font-clr3');
   }
-
-  .movies-modal__close-btn {
-    .movies-modal__close-icon {
-      fill: white;
-
-      &:hover {
-        fill: #ff6b08;
-      }
-    }
-  }
-
-  .modal__btns__button {
-    color: white;
-    border: 1px solid white;
-  }
-
-  .movie-modal__vote-count {
-    color: #0e0e0e;
+  .gallery__card-icon {
+    fill: getColor('font-clr1');
   }
 }
 
-// Footer Dark - theme
-.dark-theme {
-  .footer-container {
-    color: white;
-    background-color: #0e0e0e;
-  }
-
-  .copyright-logo,
-  .footer-text {
-    color: white;
-  }
+.gallery__card-icon {
+  fill: getColor('font-clr1');
+  transition: all 300ms;
+  // fill: #fff;
 }

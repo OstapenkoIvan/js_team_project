@@ -54,7 +54,7 @@ async function getEvents() {
   const eventsArr = await allEvents.getAllEvents();
   await console.log(eventsArr);
   const appendMarkup = await listMarkup(eventsArr);
-  await refs.listEl.insertAdjacentHTML('beforeend', appendMarkup);
+  // await refs.listEl.insertAdjacentHTML('beforeend', appendMarkup);
   //   await console.log(appendMarkup);
 }
 
@@ -110,14 +110,12 @@ async function listMarkup(data) {
 </picture>
  */
 
-allEvents.getEventById('vvG18Z96SmndKH');
-
 ////////////////////////////////////////////////////////////////////////////////////////tui-pagination
 // const pagination = new Pagination('pagination');
 
 const container = document.getElementById('pagination');
 // const pagination = new Pagination(container);
-console.log(container);
+
 // const cont = document.querySelector('tui-pagination');
 
 const options = {
@@ -150,4 +148,3 @@ const options = {
 const pagination = new Pagination('pagination', options);
 console.log(pagination);
 console.log(EventsAPI);
-
