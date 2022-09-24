@@ -74,23 +74,23 @@ body.dark-theme {
   background: getColor('font-clr3');
   color: #fff;
   border: none;
+  border-radius: 10px 0px;
 }
 
 #pagination .tui-is-selected {
-  background: #fff;
-  border-radius: 50%;
-  color: black;
+  // background: #fff;
+  // color: black;
+  border-radius: 10px 0px;
+  border: 1px solid #dc56c5;
 }
 
 #pagination .tui-last:hover {
   background-color: getColor('font-clr1');
-  border-radius: 50%;
   transition: all 250ms;
 }
 
 #pagination .tui-page-btn:hover {
   background-color: getColor('font-clr1');
-  border-radius: 50%;
   transition: all 250ms;
 }
 
@@ -98,28 +98,41 @@ body.light-theme {
   #pagination .tui-page-btn {
     background-color: #fff2fd;
     border-radius: 50%;
+    border-radius: 10px 0px;
   }
   #pagination .tui-page-btn:hover {
     background: getColor('font-clr2');
     transition: all 250ms;
   }
-  #pagination .tui-page-btn {
-    background-color: getColor('font-clr1');
-    border-radius: 50%;
-  }
-  #pagination .tui-page-btn {
-    background-color: getColor('font-clr1');
-    border-radius: 50%;
-  }
+
   #pagination .tui-page-btn {
     color: getColor('font-clr3');
-    background: getColor('font-clr1');
-    border: none;
+    border: 1px solid #dc56c5;
+    border-radius: 10px 0px;
   }
   #pagination .tui-is-selected {
     color: #000;
-    background: #fff;
-    border-radius: 50%;
+    background: getColor('font-clr1');
+  }
+}
+
+#pagination.tui-pagination {
+  .tui-prev,
+  .tui-first,
+  .tui-next {
+    display: none;
+  }
+  .tui-last {
+    font-size: 12px;
+  }
+  .tui-last.tui-is-disabled {
+    display: none;
+  }
+}
+.tui-last-page {
+  color: white;
+  &::after {
+    content: attr(data-num);
   }
 }
 

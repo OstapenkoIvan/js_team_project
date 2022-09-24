@@ -1,3 +1,6 @@
+.gallery{
+    padding-bottom: 60px;
+}
 .gallery__list{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -9,51 +12,46 @@
 .gallery__item-card{
     position: relative;
     display: block;
-    min-height: 239px;
+    min-height: 209px;
     width: 120px;
     padding-bottom: 8px;
-    border-radius: 50px 0 20px;
+    transition: transform 250ms $time-distribution-function;
+   
  
 }
 .gallery__img-wrapper{
     overflow: hidden;
     width: 100%;
-    height: 154px;
-    border-radius: 50px 0;  
+    height: 100px;
+    border-radius: 50px 0;
+      
     
 }
 .gallery__item-card:hover,
 .gallery__item-card:focus{
-    box-shadow: 0px 1px 1px rgba(220,
-        86,
-        197,
-        0.12), 0px 4px 4px rgba(220,
-            86,
-            197,
-            0.06), 1px 4px 6px rgba(220,
-                86,
-                197,
-                0.16);
-    transform: scale(1.1);
+    // border-bottom: 1px solid getColor('font-clr1');
+    transform: scale(1.05);
+
 }
 .gallery__img-wrapper::before{
     content: "";
         position: absolute;
         top: -9px;
         right: -9px;
-        width: 102px;
-        height: 95px;
+        width: 120px;
+        height: 100px;
         border-radius: 50px 0;
         border: 1px solid getColor('bg-clr4');
+        transition: border-color 250ms $time-distribution-function;
 
 }
 .gallery__item-card:hover .gallery__img-wrapper::before,
 .gallery__item-card:focus .gallery__img-wrapper::before{
     border-color: getColor('font-clr1');
-
+   
 }
 .gallery__img{
-    object-fit: cover;
+  
     display: block;
     width: 100%;
     height: 100%;
@@ -77,23 +75,38 @@
 }
 .gallery__kontsert-location{
     display: flex;
-    @include font-size(12px, 600, calc(14.63 / 12));
+    justify-content: center;
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 8px;
+    @include font-size(12px, 600, calc(14.63 / 12));
     color: getColor('font-clr2');
 
 }
 .gallery__card-icon {
     display: block;
     margin-right: 4px;
-    margin-left: 4px;
+    fill: getColor('font-clr2');
    
 
  }
 @include phone{
+    .gallery{
+        margin-top: -50px;
+    }
     .gallery__list{
         max-width: 300px;
         margin-left: auto;
         margin-right: auto;
+    }
+    .gallery__card-icon{
+        margin-top: 2px;
+
+    }
+    .gallery__img-wrapper{
+        border-radius: 30px 0;
     }
       
 }
@@ -106,21 +119,22 @@
     }
     .gallery__item-card{
         width: 141px;
-        min-height: 269px;
+        min-height: 239px;
         
     }
     .gallery__img-wrapper::before {
         content: "";
         width: 120px;
-        height: 112px;
+        height: 85px;
         top: -10px;
         right: -10px;
+        border-radius: 30px 0;
 
     }
     .gallery__img-wrapper{
         width: 100%;
-        height: 178px;
-       
+        height: 95px;
+        border-radius: 30px 0; 
     }
     .gallery__card-title {
         @include font-size(16px, 700, calc(19.05 / 16));
@@ -135,6 +149,7 @@
     .gallery__card-icon{
         width: 8px;
         height: 14px;
+        margin-top: 2px;
     }
 }
 
@@ -147,20 +162,21 @@
     }
     .gallery__item-card {
         width: 267px;
-        min-height: 437px;
+        min-height: 330px;
        
     }
     .gallery__img-wrapper::before {
         content: "";
         width: 227px;
-        height: 212px;
+        height: 180px;
         top: -19px;
         right: -19px;
+
 
     }
    .gallery__img-wrapper{
       width: 100%;
-      min-height: 337px;
+      height: 200px;
 
    }
     .gallery__card-title {
@@ -173,8 +189,8 @@
         @include font-size(14px, 600, calc(17.07 / 14))    
     }
     .gallery__card-icon {
-        width: 10px;
-        height: 18px;
+        width: 9px;
+        height: 15px;
     }
 
 }

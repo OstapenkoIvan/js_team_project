@@ -17,3 +17,12 @@
   pointer-events: none;
   opacity: 0;
 }
+
+.--notScrolled {
+  overflow: hidden;
+}
+// .gallery__img,
+// .gallery__date,
+.card-box {
+  pointer-events: none;
+}

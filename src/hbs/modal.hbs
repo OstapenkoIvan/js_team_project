@@ -1,0 +1,100 @@
+<div class='modal-top'>
+  <div class='modal-img-box'>
+    <img class='modal-img' src='{{image}}' alt='{{name}}' />
+  </div>
+
+  <div class='modal-logo-box'>
+    <img class='modal-logo-img' src='{{imageLogo}}' alt='logo' />
+  </div>
+
+  <div class='section --descr'>
+    <span class='title'>Info</span>
+    <span class='event --desr'>
+      {{description}}
+    </span>
+  </div>
+
+</div>
+
+<div class='modal-middle'>
+
+  <div class='side-left'>
+    <div class='section --info'>
+      <span class='title'>When</span>
+      <span class='event --date'>{{date}}</span>
+      <span class='event --time'>
+        {{time}}
+        <span class='event --timeZone'>({{timeZone}})</span>
+      </span>
+    </div>
+    <div class='section --info'>
+      <span class='title'>Where</span>
+      <span class='event --region'>{{city}},
+        {{country}}</span>
+      <span class='event --location'>{{location}}</span>
+    </div>
+    <div class='section --info'>
+      <span class='title'>Who</span>
+      <span class='event --author'>{{name}}</span>
+    </div>
+  </div>
+
+  <div class='side-right'>
+    <div class='section --toBuy'>
+      <span class='title'>Prices</span>
+      <div class='toBuy --zone'>
+        <div class='toBuy --Standart'>
+          <span class='event --price --standart'>
+            <svg class='btn-icon' width='29' height='19'>
+              <use href='{{sprite}}#icon-ticket'></use>
+            </svg>
+            Standart
+            <span class='js-price'>
+              <span class='js-price-min'>{{priceStandart.min}}</span>
+              -
+              <span class='js-price-max'>{{priceStandart.max}}</span>
+              <span>{{priceStandart.currency}}</span>
+            </span>
+
+          </span>
+          <a
+            class='linkBtn --toBuyTicketLink js-link-standart'
+            href='{{toBuyUrl}}'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            BUY TICKETS
+          </a>
+        </div>
+
+        <div class='toBuy --Vip'>
+          <span
+            class='event --price --vip'
+            data-price-min='{{priceVIP.min}}'
+            data-price-max='{{priceVIP.min}}'
+          >
+            <svg class='btn-icon' width='29' height='19'>
+              <use href='{{sprite}}#icon-ticket'></use>
+            </svg>
+            VIP
+            <span class='js-price'>
+              <span class='js-price-min'>{{priceVIP.min}}</span>
+              -
+              <span class='js-price-max'>{{priceVIP.max}}</span>
+              <span>{{priceVIP.currency}}</span>
+            </span>
+
+          </span>
+          <a
+            class='linkBtn --toBuyTicketLink js-link-vip'
+            href='{{toBuyUrl}}'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            BUY TICKETS
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
