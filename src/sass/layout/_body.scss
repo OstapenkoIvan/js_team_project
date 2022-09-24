@@ -17,7 +17,6 @@
     padding-bottom: 8px;
     transition: transform 250ms $time-distribution-function;
    
- 
 }
 .gallery__img-wrapper{
     overflow: hidden;
@@ -38,8 +37,8 @@
         position: absolute;
         top: -9px;
         right: -9px;
-        width: 120px;
-        height: 100px;
+        width: 110px;
+        height: 95px;
         border-radius: 50px 0;
         border: 1px solid getColor('bg-clr4');
         transition: border-color 250ms $time-distribution-function;
@@ -51,7 +50,6 @@
    
 }
 .gallery__img{
-  
     display: block;
     width: 100%;
     height: 100%;
@@ -105,10 +103,7 @@
         margin-top: 2px;
 
     }
-    .gallery__img-wrapper{
-        border-radius: 30px 0;
-    }
-      
+  
 }
 @include tablet{
     .gallery__list{ 
@@ -128,13 +123,11 @@
         height: 85px;
         top: -10px;
         right: -10px;
-        border-radius: 30px 0;
 
     }
     .gallery__img-wrapper{
         width: 100%;
         height: 95px;
-        border-radius: 30px 0; 
     }
     .gallery__card-title {
         @include font-size(16px, 700, calc(19.05 / 16));
@@ -151,6 +144,16 @@
         height: 14px;
         margin-top: 2px;
     }
+}
+@include toDesktop{
+    .gallery__img-wrapper::before{
+        border-radius: 30px 0;
+    }
+        .gallery__img-wrapper{
+            border-radius: 30px 0;
+
+        }
+
 }
 
 @include desktop{
@@ -171,7 +174,6 @@
         height: 180px;
         top: -19px;
         right: -19px;
-
 
     }
    .gallery__img-wrapper{

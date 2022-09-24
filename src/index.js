@@ -2,12 +2,13 @@ import { btn } from './js/theme-lite-dark.js';
 
 //Импортируем API
 import EventsAPI from './js/eventsAPI';
-const allEvents = new EventsAPI();
+let allEvents = new EventsAPI();
 //Импортируем иконки
 import symbolDefs from '../src/images/symbol-defs.svg';
 //Импортируем пагинатор
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { getEventByIdForModal } from '../src/js/modal';
 
 //============================================================
 
@@ -18,6 +19,7 @@ const refs = {
 };
 
 let pagination = null;
+let eventsArr = null;
 let { textInput, countryInput, page } = allEvents;
 
 //Подключаем пагинатор
@@ -33,14 +35,13 @@ async function loadFirstData() {
   page = 0;
 
   fetchData(textInput, countryInput, page);
+
   return;
 }
 
 export async function loadSearchedData(evt) {
   evt.preventDefault();
-  // const { text = '', country } = evt.target.elements;
 
-  console.log(evt.currentTarget.value);
   const countryChosenElValue = evt.currentTarget.value;
   textInput = evt.target.elements?.text.value;
   countryInput = evt.target.elements?.country.value;
@@ -51,17 +52,19 @@ export async function loadSearchedData(evt) {
   return;
 }
 
-async function fetchData(textInput, countryInput, page) {
+export async function fetchData(textInput, countryInput, page) {
   let data = await getEvents(textInput, countryInput, page);
 
-  let { perPage } = allEvents;
+  let lastPage = Math.round(data.totalElements / data.perPage).toString();
+  // console.log(lastPage);
 
   const options = {
     // below default value of options
+    total: 5,
     totalItems: data.totalElements,
-    itemsPerPage: perPage,
+    itemsPerPage: data.perPage,
     visiblePages: 5,
-    page: page + 1,
+    page: data.page + 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
@@ -69,10 +72,11 @@ async function fetchData(textInput, countryInput, page) {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+
       moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
-        '</a>',
+        '<div class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-last-page" data-num="20"></span>' +
+        '</div>',
       disabledMoveButton:
         '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
@@ -83,66 +87,23 @@ async function fetchData(textInput, countryInput, page) {
         '</a>',
     },
   };
+
   pagination = new Pagination(container, options);
+
+  // document.querySelector('.tui-last-page').setAttribute('data-num', lastPage);
   pagination.on('beforeMove', function (eventData) {
     page = eventData.page - 1;
-    console.log(page);
 
     return getEvents(textInput, countryInput, page);
   });
 }
 
 async function getEvents(input, country, pageNumber) {
-  const eventsArr = await allEvents.getTextAndCountry(
-    input,
-    country,
-    pageNumber
-  );
-  (await eventsArr) && listMarkup(eventsArr.data);
+  eventsArr = await allEvents.getTextAndCountry(input, country, pageNumber);
+
+  eventsArr && listMarkup(eventsArr.data);
   return eventsArr;
 }
-
-// async function getEvents({
-//   inputValue = '',
-//   countryValue = '',
-//   pageNumber,
-//   keyword = '',
-// }) {
-//   console.log('inputValue', inputValue);
-//   console.log('keyword', countryValue);
-//   let eventsArr = null;
-//   let similarEventsArr = null;
-//   if (!keyword) {
-//     console.log('inputValue', inputValue);
-//     console.log('keyword', countryValue);
-//     eventsArr = await allEvents.getTextAndCountry(
-//       inputValue,
-//       countryValue,
-//       pageNumber
-//     );
-//   }
-//   if (keyword) {
-//     similarEventsArr = await allEvents.getSimilarEvents(keyword);
-//   }
-
-//   // similarEventsArr && listMarkup(similarEventsArr);
-
-//   if (eventsArr) {
-//     listMarkup(eventsArr);
-//     return eventsArr;
-//   }
-
-//   //сделать разметку для похожих событий
-//   if (similarEventsArr) {
-//     console.log(similarEventsArr);
-//     listMarkup(similarEventsArr);
-//     return similarEventsArr;
-//   }
-// }
-
-// getEvents({
-//   keyword: 'NBA',
-// });
 
 async function listMarkup(data) {
   refs.listEl.innerHTML = data
@@ -196,8 +157,8 @@ function openModal(evt) {
   }
 
   const objId = evt.target.closest('a').getAttribute('data-id');
-  const modal = allEvents.dataArr.find(obj => obj.id === objId);
-  console.log(modal);
+  const modal = eventsArr.dataArr.find(obj => obj.id === objId);
+  getEventByIdForModal(modal);
 }
 
 function clearFields(evt) {
@@ -205,6 +166,5 @@ function clearFields(evt) {
   if (elements) {
     elements.text.value = '';
   }
-  // evt.target.elements.country.value = '';
   return;
 }
