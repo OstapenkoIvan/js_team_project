@@ -148,11 +148,7 @@ class EventsAPI {
       totalElements = fetchPage.totalElements;
       dataArr = embedded.events;
 
-      const data = embedded.events
-        ? embedded.events
-        : embedded.attractions
-        ? embedded.attractions
-        : response.data;
+      const data = embedded.events ? embedded.events : response.data;
 
       return { data, totalElements, page, perPage, dataArr };
     } catch (error) {

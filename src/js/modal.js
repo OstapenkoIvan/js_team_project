@@ -36,8 +36,8 @@ export async function getEventByIdForModal(cardId) {
 
   //* Створений новий обєкт
   let forModalObj = {
-    id: id,
-    name: name,
+    id,
+    name,
     imageLogo: images.find(el => el.ratio === '3_2' && el.width === 640).url,
     image: images.find(el => el.ratio === '16_9' && el.width === 2048).url,
     description: info,
