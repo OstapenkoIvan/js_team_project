@@ -22,7 +22,6 @@ body.modal-open {
 }
 
 .footer-modal {
-  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -36,17 +35,16 @@ body.modal-open {
     height: auto;
   }
   @media screen and (min-width: 768px) {
-    width: 560px;
+    width: 400px;
   }
   @media screen and (min-width: 1280px) {
-    width: 768px;
+    width: 680px;
   }
 }
 
 .modal-close-footer {
   background-color: #0e0e0e;
   position: absolute;
-  transform: translate(-50%, -50%);
   border: none;
   cursor: pointer;
   border-radius: 50%;
@@ -54,22 +52,22 @@ body.modal-open {
     background-color 250ms $time-distribution-function;
 
   @media screen and (max-width: 767px) {
-    width: 25px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     top: 15px;
-    left: 298px;
+    left: 270px;
   }
   @media screen and (min-width: 768px) {
     width: 40px;
-    height: 30px;
-    top: 15px;
-    left: 535px;
+    height: 40px;
+    top: 10px;
+    left: 340px;
   }
   @media screen and (min-width: 1280px) {
     width: 50px;
     height: 50px;
-    top: 30px;
-    left: 740px;
+    top: 10px;
+    left: 620px;
     &:hover,
     &:focus {
       border-radius: 50%;
@@ -81,24 +79,23 @@ body.modal-open {
   &::after {
     position: absolute;
     content: '';
-    height: 14px;
-    width: 1px;
+    height: 25px;
+    width: 2px;
     cursor: pointer;
     background: #4c00fe;
 
     @media screen and (max-width: 767px) {
       top: 0px;
-      left: 14px;
+      // left: 14px;
     }
     @media screen and (min-width: 768px) {
       height: 30px;
-      width: 2px;
       top: 5px;
-      left: 24px;
+      // left: 24px;
     }
     @media screen and (min-width: 1280px) {
       height: 40px;
-      width: 4px;
+      width: 3px;
     }
   }
   &::before {
@@ -109,30 +106,65 @@ body.modal-open {
   }
 }
 
-.wrapper {
+.line-first {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 200px);
-  align-items: end;
-  margin-right: 50px;
-  padding-left: 100px;
+  grid-template-columns: repeat(2, 95px);
+  justify-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
 
-  @media screen and (max-width: 767px) {
-    margin-right: 10px;
-    padding-left: 45px;
-    padding-right: 15px;
+  @media screen and (min-width: 767px) {
+    grid-template-columns: repeat(2, 110px);
+    column-gap: 30px;
   }
   @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
-    padding-top: 50px;
-    padding-right: 100px;
-    padding-left: 130px;
-    gap: 20px;
+    padding: 50px 100px 50px 130px;
+  }
+}
+
+.students-item {
+  fill: #4c00fe;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 95px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 767px) {
+    width: 110px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 148px;
+  }
+}
+
+.students-item:hover {
+  fill: #dc56c5;
+}
+
+.text_and_link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 10px;
+  a {
+    font-size: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 10px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-top: 15px;
   }
 }
 
 .students-foto {
   border-radius: 10px 10px;
+  object-fit: cover;
   @media screen and (max-width: 767px) {
     width: 92px;
     height: 92px;
@@ -148,89 +180,38 @@ body.modal-open {
 }
 
 .students-name {
-  margin-top: 10px;
-  margin-bottom: 5px;
+  // margin-top: 10px;
+  // margin-bottom: 5px;
   color: #dc56c5;
   @media screen and (max-width: 767px) {
-    font-size: 19px;
+    font-size: 12px;
     font-weight: 200;
-    padding-left: 5px;
+    // width: calc(92px - 28px - 5px);
+    // padding-left: 5px;
   }
   @media screen and (min-width: 768px) {
     font-weight: 500;
     font-size: 15px;
-    padding-right: 10px;
+    // padding-right: 10px;
   }
   @media screen and (min-width: 1280px) {
     font-weight: 600;
     font-size: 19px;
-    padding-left: 10px;
+    // padding-left: 10px;
   }
-}
-
-.students-item a {
-  fill: #4c00fe;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  @media screen and (max-width: 767px) {
-    width: 25px;
-    height: 25px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 44px;
-    height: 44px;
-  }
-}
-
-.students-item a:hover {
-  fill: #dc56c5;
-}
-
-.students-item ul {
-  display: flex;
-  justify-content: space-around;
-}
-
-.students-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .students-icon svg {
   @media screen and (max-width: 767px) {
-    height: 45px;
-    margin-left: -10px;
-    margin-top: 28px;
+    height: 28px;
+    width: 28px;
   }
   @media screen and (min-width: 768px) {
-    // width: 38px;
-    // height: 38px;
+    width: 32px;
+    height: 32px;
   }
   @media screen and (min-width: 1280px) {
-    width: 44px;
-    height: 60px;
-    margin-top: 15px;
-  }
-}
-
-.students-icon:not(:last-child) {
-  @media screen and (max-width: 767px) {
-    margin-right: 7px;
-  }
-}
-.text_and_link {
-  display: flex;
-  justify-content: space-between;
-
-  @media screen and (min-width: 1280px) {
-    align-items: flex-end;
+    width: 38px;
+    height: 38px;
   }
 }

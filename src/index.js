@@ -62,7 +62,9 @@ export async function fetchData(textInput, countryInput, page) {
   let data = await getEvents(textInput, countryInput, page);
 
   let lastPage = Math.round(data.totalElements / data.perPage).toString();
-  // console.log(lastPage);
+  if (data.totalElements > 999) {
+    data.totalElements = 990;
+  }
 
   const options = {
     // below default value of options
@@ -81,7 +83,7 @@ export async function fetchData(textInput, countryInput, page) {
 
       moveButton:
         '<div class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-last-page" data-num="20"></span>' +
+        `<span class="tui-last-page" data-num="${lastPage}"></span>` +
         '</div>',
       disabledMoveButton:
         '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
@@ -96,7 +98,6 @@ export async function fetchData(textInput, countryInput, page) {
 
   pagination = new Pagination(container, options);
 
-  // document.querySelector('.tui-last-page').setAttribute('data-num', lastPage);
   pagination.on('beforeMove', function (eventData) {
     page = eventData.page - 1;
 
