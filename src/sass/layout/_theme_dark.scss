@@ -94,6 +94,26 @@ body.dark-theme {
   transition: all 250ms;
 }
 
+#pagination.tui-pagination {
+  .tui-prev,
+  .tui-first,
+  .tui-next {
+    display: none;
+  }
+  .tui-last {
+    font-size: 12px;
+  }
+  .tui-last.tui-is-disabled {
+    display: none;
+  }
+}
+.tui-last-page {
+  color: white;
+  &::after {
+    content: attr(data-num);
+  }
+}
+
 body.light-theme {
   #pagination .tui-page-btn {
     background-color: #fff2fd;
@@ -114,25 +134,10 @@ body.light-theme {
     color: #000;
     background: getColor('font-clr1');
   }
-}
-
-#pagination.tui-pagination {
-  .tui-prev,
-  .tui-first,
-  .tui-next {
-    display: none;
-  }
-  .tui-last {
-    font-size: 12px;
-  }
-  .tui-last.tui-is-disabled {
-    display: none;
-  }
-}
-.tui-last-page {
-  color: white;
-  &::after {
-    content: attr(data-num);
+  #pagination.tui-pagination {
+    .tui-last-page {
+      color: #0e0e0e;
+    }
   }
 }
 
