@@ -1,5 +1,4 @@
 .page-header__thumb {
-  min-width: 320px;
   padding-top: 80px;
   padding-bottom: 112px;
   background-image: url('/src/images/tablet/header-bg-tablet(1x).png');
@@ -33,26 +32,6 @@
     (min-width: 1280px) and (min-resolution: 3dppx) {
     background-image: url('/src/images/desktop/header-bg-desktop(3x).png');
   }
-}
-
-body.light-theme .page-header__thumb {
-    background-image: url('/src/images/tablet/light-bg-tablet-1x.png');
-  
-  
-    @include bg-adapt-2x {
-      background-image: url('/src/images/tablet/light-bg-tablet-2x.png');
-    }
-  
-    @include desktop {
-      background-image: url('/src/images/desktop/light-bg-desktop-1x.png');
-    }
-  
-    @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2),
-    (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2),
-    (min-width: 1280px) and (min-resolution: 192dpi),
-    (min-width: 1280px) and (min-resolution: 2dppx) {
-      background-image: url('/src/images//desktop/light-bg-desktop-2x.png');
-    }
 }
 
 .background-image__top {
@@ -97,10 +76,6 @@ body.light-theme .page-header__thumb {
   }
 }
 
-body.light-theme .logo__icon {
-  fill: getColor('font-clr1');
-}
-
 .theme-box {
   position: absolute;
   top: 16px;
@@ -128,7 +103,8 @@ body.light-theme .logo__icon {
   }
 }
 
-.light-theme-icon {
+.light-theme-icon,
+.dark-theme-icon {
   fill: getColor('font-clr2');
   transition-property: fill;
   transition-duration: 250ms;
@@ -139,10 +115,6 @@ body.light-theme .logo__icon {
   .change-theme-button:focus>& {
     fill: getColor('font-clr1');
   }
-}
-
-body.light-theme .dark-theme-icon {
-  fill: getColor('font-clr1');
 }
 
 .page-title {
@@ -195,11 +167,6 @@ body.light-theme .dark-theme-icon {
   }
 }
 
-body.light-theme .header-form__input {
-  color: getColor('font-clr1');
-  border: 1px solid getColor('font-clr1');
-}
-
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #939393;
@@ -215,25 +182,6 @@ body.light-theme .header-form__input {
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #939393;
-}
-
-body.light-theme {
-  ::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: getColor('font-clr1');
-    opacity: 1;
-    /* Firefox */
-  }
-
-  :-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: getColor('font-clr1');
-  }
-
-  ::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: getColor('font-clr1');
-  }
 }
 
 .header-form__search-btn {
@@ -263,10 +211,6 @@ body.light-theme {
   }
 }
 
-body.light-theme .header-form__search-icon {
-  fill: getColor('font-clr1');
-}
-
 .header-form__select-icon {
   position: absolute;
   top: 50%;
@@ -288,10 +232,6 @@ body.light-theme .header-form__search-icon {
 
 }
 
-body.light-theme .header-form__select-icon {
-  fill: getColor('font-clr1');
-}
-
 .select {
   position: relative;
   z-index: 1;
@@ -306,15 +246,7 @@ body.light-theme .header-form__select-icon {
   backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 1px solid transparent;
-
-  transition-property: border;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.light-theme .select {
-  color: getColor('font-clr1');
-  border: 1px solid getColor('font-clr1'); 
+  outline: none;
 }
 
 .focusAlways {
@@ -337,15 +269,13 @@ body.light-theme .select {
 
   position: absolute;
   top: 100%;
-  left: -1;
+  left: 0;
   z-index: 100;
 
   width: 280px;
 
   background-color: rgba(220, 86, 197, 0.9);
   border-radius: 0 0 20px 20px;
-  border: 1px solid getColor('font-clr1');
-  border-top: 0;
   overflow: hidden;
   
   transition-property: border;
@@ -353,10 +283,14 @@ body.light-theme .select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   &:focus{
+    border: 1px solid getColor('font-clr1');
     border-top: 0;
+    left: -1;
   }
 
-  .select:focus>& {    
+  .select:focus>& {        
+    border: 1px solid getColor('font-clr1');
+    border-top: 0;
     left: -1;
   }
 }
@@ -376,7 +310,8 @@ body.light-theme .select {
 
   &:hover,
   &:focus {
-    background-color: #939393;   
+    background-color: #939393;        
+    border: none;
     outline: none;
   }
 }
