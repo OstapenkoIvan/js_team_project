@@ -40,13 +40,19 @@ async function loadFirstData() {
 }
 
 export async function loadSearchedData(evt) {
+  const { elements } = evt.target;
   evt.preventDefault();
 
+  const searchTextValue = evt.currentTarget.closest('form').elements.text.value;
   const countryChosenElValue = evt.currentTarget.value;
-  textInput = evt.target.elements?.text.value;
-  countryInput = evt.target.elements?.country.value;
+  textInput = elements?.text.value;
+  countryInput = elements?.country.value;
 
-  fetchData(textInput, countryInput || countryChosenElValue, page);
+  fetchData(
+    textInput || searchTextValue,
+    countryInput || countryChosenElValue,
+    page
+  );
 
   clearFields(evt);
   return;
