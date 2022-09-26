@@ -125,7 +125,6 @@ body.modal-open {
 }
 
 .students-item {
-  fill: #4c00fe;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -138,10 +137,6 @@ body.modal-open {
   @media screen and (min-width: 1280px) {
     width: 148px;
   }
-}
-
-.students-item:hover {
-  fill: #dc56c5;
 }
 
 .text_and_link {
@@ -202,6 +197,10 @@ body.modal-open {
 }
 
 .students-icon svg {
+  fill: #4c00fe;
+  &:hover {
+    fill: #dc56c5;
+  }
   @media screen and (max-width: 767px) {
     height: 28px;
     width: 28px;
